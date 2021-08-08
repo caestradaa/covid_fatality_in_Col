@@ -12,11 +12,15 @@
 ### Some questions
 
 
+
 ## Data Collection
 Data was collected from....
 Data sets description...
 
 ![alt text]( "Raw data preview")
+
+
+
 
 ## Data Cleaning
 Ater extrating the data it needed to be cleaned so it was...and made the following changes:
@@ -27,39 +31,50 @@ Ater extrating the data it needed to be cleaned so it was...and made the followi
 
 ![alt text]( "Clean data preview")
 
-## Data Modeling/Calculations and Explanations
+
+
+
+## Considerations/Calculations and Explanations
 - Fatality rate:
 - Mortality rate:
 - Age group
 
 ![alt text]( "")
 
+
+
+
 ## Exploratory Data Analysis (EDA)
 - 4M records, 10 age groups, 2 geners were analized.
 
 ![alt text]( "Count")
 
-- Distribution analysis: 
+## Distribution analysis: 
 
 ![alt text]( "")
 ![alt text]( "")
 
-- Correlation analysis
+## Correlation analysis
 
 ![alt text]( "")
 ![alt text]( "")
+
+
+
 
 ## Specific Analysis
 
-- First analysis
+### First analysis
 
 ![alt text]( "")
 ![alt text]( "")
 
-- Second analysis
+### Second analysis
 
 ![alt text]( "")
 ![alt text]( "")
+
+
 
 
 ## Conclusions
