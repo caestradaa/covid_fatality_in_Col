@@ -8,9 +8,18 @@
 - It was found that during the first 3 months after the start of vaccination (02-2021), there is no significant change that indicates a decrease in lethality, however, from 05-2021 there is a notable decrease. It is much more evident in the more advanced age groups since they were a priority in the country's vaccination scheme.
 
 ## Problem statement
+This project seeks to have a deeper knowledge of the behaviour of the pandemic in Colombia and to know specifically if the vaccination process is being effective or not. If it is, to what extent, and also, what is the trend in the future according to the rate of vaccination rithm and the rate of infections.
 
-### Some questions
+This pandemic has put us to the test as humanity, exposing the fragility of our economic systems, however, it has also been a trigger to reflect on our consumer lifestyle and accelerate the transformation towards new, more sustainable production models.
 
+### Some questions to answer
+- What proportion of the total population and infected population has died from Covid-19?
+- Vaccination: How many doses have been administered to date? How many people have received at least one dose? How many are fully vaccinated?
+- According to the current vaccination rate, when would 70% of the population be fully vaccinated?
+- How has the Covid-19 fatality rate evolved from the start of the pandemic until today?
+- Is there a change in trend at any point after the start of vaccination? In general, by age group and by gender.
+- Which age group already vaccinated has had a better response to vaccines?
+- Is there any relationship between the number of people vaccinated and the evolution of the fatality rate?
 
 
 ## Data Collection
