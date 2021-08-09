@@ -47,7 +47,7 @@ Cleaning of both datasets was done with SQL in SQL Server Management Studio. All
 - Change of column name from `estado` to `severidad`, as it better explains the content of the column: the degree of severity of each case.
 - Change of column name from `recuperado` by `estado`, as it better explains the content of the column: the current status of the case.
 - Correction of the names of municipalities and departments with accents and letter `ñ`.
-- Correction of the names and ISO code of countries: accents, letter ñ and misspelled. 
+- Correction of the names and ISO code of countries: accents, letter ñ and misspelled.
 
 ```sql
 --STANDARIZE DATE FORMAT: Converting "datetime" to "date".
@@ -67,6 +67,18 @@ SELECT fecha_muerte FROM Casos WHERE fecha_muerte = '1899-12-30';
 UPDATE Casos
 SET fecha_muerte = NULL
 WHERE fecha_muerte = '1899-12-30';
+
+--RENAMING COLUMNS: "recuperado" for "estado".
+EXEC SP_RENAME 'Casos.recuperado', 'estado', 'COLUMN';
+
+```
+- Finally retrieving only the columns that interest to this analysis:
+
+```sql
+--RETRIEVING CLEANED DATA SET
+SELECT TOP 10 fecha_reporte_web, id_caso, edad, unidad_medida_edad, sexo, estado, fecha_muerte
+FROM Casos
+ORDER BY fecha_reporte_web
 ```
 
 
