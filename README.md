@@ -84,4 +84,19 @@ Ater extrating the data it needed to be cleaned so it was...and made the followi
 - 3
 - 4 
 
+`para inline code`
+para inline code
+
+```
+para bloque
+de codigo
+```
+
+```python
+for i in range(0,6):
+  if i :
+```
+
+
+
 <!---Para ocultar-->
