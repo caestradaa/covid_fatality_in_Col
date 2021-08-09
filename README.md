@@ -4,8 +4,8 @@
 ## Overview
 - A data analysis on Covid-19 in Colombia was made in order to understand the effects that mass vaccination is having on the lethality of the virus. The main objective is to understand if there really is any positive effect on the vaccinated population.
 - Two datasets were used: Covid-19 positive cases data in Colombia extracted from the oficial repository of the National Institute of Health (4.5M rows up to July 14, 2021), and Vaccination data extracted from the official Our World in Data repository (127 rows).
-- Project tools: SQL Server and ADS for loading and cleaning data. SQL and Python for exploratory analysis on a jupyter notebook via %sql magic (ipython-sql).
-- It was found that during the first 3 months after the start of vaccination (02-2021), there is no significant change that indicates a decrease in lethality, however, from 05-2021 there is a notable decrease. It is much more evident in the more advanced age groups since they were a priority in the country's vaccination scheme.
+- Project tools: SQL Server and ADS for loading and cleaning data. SQL and Python for exploratory analysis on a Jupyter notebook via %sql magic (ipython-sql).
+- It was found that during the first 3 months after the start of vaccination (02-2021), there is no significant change that indicates a decrease in the fatality rate, however, from 05-2021 there is a notable decrease. It is much more evident in advanced age groups since they were a priority in the country's vaccination scheme.
 
 ## Problem statement
 This project seeks to have a deeper knowledge of the behaviour of the pandemic in Colombia and to know specifically if the vaccination process is being effective or not. If it is, to what extent, and also, what is the trend in the future according to the rate of vaccination rithm and the rate of infections.
@@ -23,15 +23,17 @@ This project seeks to have a deeper knowledge of the behaviour of the pandemic i
 
 ## Data Collection
 All the data required for this project was searched from multiple sources on the web, from official government websites to the repositories of recognized organizations for data collection and analysis.
-1. Official data of positive cases of Covid-19 in Colombia (until July 14, 2021), extracted in a CSV file from the official repository of the National Institute of Health. This dataset contains all the information corresponding to cases with a positive diagnosis of Covid-19 and deaths with a total of 23 columns and more than 4.5M records. It is updated daily with the new registered cases. https://www.datos.gov.co/Salud-y-Protecci-n-Social/Casos-positivos-de-COVID-19-en-Colombia/gt2j-8ykr
-2. Data corresponding to daily vaccination in Colombia (until July 15, 2021), extracted in a CSV file from the Our World On Data repository. This database corresponds to the daily compilation of vaccination data that OWOD does from official sources. https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations.
+1. Cases: Official data of positive cases of Covid-19 in Colombia (until July 14, 2021), extracted in a CSV file from the official repository of the National Institute of Health. This dataset contains all the information corresponding to cases with a positive diagnosis of Covid-19 and deaths with a total of 23 columns and 4.565.372 records. It is updated daily with the new registered cases. https://www.datos.gov.co/Salud-y-Protecci-n-Social/Casos-positivos-de-COVID-19-en-Colombia/gt2j-8ykr
+2. Vaccination: Data corresponding to daily vaccination in Colombia (until July 15, 2021), extracted in a CSV file from the Our World On Data repository. It has 12 columns and 33.672 rows that corresponds to the daily compilation of vaccination data that OWOD does from official sources. https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations.
 
 Raw datasets:
+<!---
 ```
   Dataset      Columns       Rows
 1.Casos          23        4.565.372
 2.Vacunación     12         33.672
 ```
+-->
 The two datasets were loaded to a database called "CovidColombia" created on a local server using Microsoft SQL Server. Two tables were created: "Cases" and "Vaccinations", corresponding to each CSV file. As shown above, there were inconsistencies in the transformation of the data types and erroneous data was written in the null records of date fields. That and other bugs were fixed in data cleaning.
 
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Raw_dataset_preview_Casos_Data_errors.png "Raw data preview")
