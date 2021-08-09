@@ -85,7 +85,6 @@ Ater extrating the data it needed to be cleaned so it was...and made the followi
 - 4 
 
 `para inline code`
-para inline code
 
 ```
 para bloque
