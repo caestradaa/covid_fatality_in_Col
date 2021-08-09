@@ -14,12 +14,12 @@ This pandemic has put us to the test as humanity, exposing the fragility of our 
 
 ### Some questions to answer
 - What proportion of the total population and infected population has died from Covid-19?
-- Vaccination: How many doses have been administered to date? How many people have received at least one dose? How many are fully vaccinated?
-- According to the current vaccination rate, when would 70% of the population be fully vaccinated?
+- How many vaccine doses have been administered to date? How many people have received at least one dose? How many are fully vaccinated?
 - How has the Covid-19 fatality rate evolved from the start of the pandemic until today?
 - Is there a change in trend at any point after the start of vaccination? In general, by age group and by gender.
 - Which age group already vaccinated has had a better response to vaccines?
 - Is there any relationship between the number of people vaccinated and the evolution of the fatality rate?
+- According to the current vaccination rate, when would 70% of the population be fully vaccinated?
 
 
 ## Data Collection
@@ -33,15 +33,14 @@ Raw datasets:
 1.Casos          23        4.565.372
 2.Vacunación     12         33.672
 ```
-The two datasets were loaded to a database called "CovidColombia" created on a local server using Microsoft SQL Server. Two tables were created: "Cases" and "Vaccinations", corresponding to each CSV file.
+The two datasets were loaded to a database called "CovidColombia" created on a local server using Microsoft SQL Server. Two tables were created: "Cases" and "Vaccinations", corresponding to each CSV file. As shown above, there were inconsistencies in the transformation of the data types and erroneous data was written in the null records of date fields. That and other bugs were fixed in data cleaning.
 
-![alt text]( "Raw data preview")
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Raw_dataset_preview_Casos_Data_errors.png "Raw data preview")
 
 
 
 ## Data Cleaning
-The two datasets were loaded to a database called "CovidColombia" created on a local server using Microsoft SQL Server. Two tables were created: "Cases" and "Vaccinations", corresponding to each CSV file.
-Ater extrating the data it needed to be cleaned so it was...and made the following changes:
+Cleaning of both datasets was done with SQL in SQL Server Management Studio. All performed procedures are documented in the attached .SQL file (link). The following transformations were performed:
 - Removed duplicates, errors and empty rows...
 - Splited columns...
 - Outliers were analized...
