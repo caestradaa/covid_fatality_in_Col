@@ -48,8 +48,7 @@ Cleaning of both datasets was done with SQL in SQL Server Management Studio. All
 - Cleaninng process and sql scrips
 
 ```sql
---STANDARIZE DATE FORMAT: Converting "datetime" to "date":
-
+--STANDARIZE DATE FORMAT: Converting "datetime" to "date".
 SELECT TOP 10 fecha_reporte_web, CONVERT(DATE, fecha_reporte_web), fecha_muerte, CONVERT(DATE, fecha_muerte)
 FROM Casos
 ORDER BY id_caso;
@@ -59,15 +58,13 @@ ALTER COLUMN fecha_reporte_web DATE;
 
 ALTER TABLE Casos
 ALTER COLUMN fecha_muerte DATE;
-```
-```sql
---CORRECTION OF DATE “1899-12-30” TO NULL: Correction of records that were wrongly imported with the date of '1899-12-30'
 
-SELECT fecha_muerte FROM Casos WHERE fecha_muerte = '1899-12-30'
+--CORRECTION OF DATE “1899-12-30” TO NULL: Correction of records that were wrongly imported with the date of '1899-12-30'.
+SELECT fecha_muerte FROM Casos WHERE fecha_muerte = '1899-12-30';
 
 UPDATE Casos
 SET fecha_muerte = NULL
-WHERE fecha_muerte = '1899-12-30'
+WHERE fecha_muerte = '1899-12-30';
 ```
 
 
