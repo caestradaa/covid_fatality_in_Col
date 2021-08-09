@@ -1,4 +1,4 @@
-# Project: Effect of Vaccines on Covid-19 fatality in Colombia
+# Project: Effect of Vaccines on Covid-19 fatality in Colombia (currently working on it)
 *Data analysis project about the effect of vaccines on covid-19 fatality in Colombia.*
 
 ## Overview
