@@ -27,16 +27,20 @@ All the data required for this project was searched from multiple sources on the
 1. Official data of positive cases of Covid-19 in Colombia (until July 14, 2021), extracted in a CSV file from the official repository of the National Institute of Health. This dataset contains all the information corresponding to cases with a positive diagnosis of Covid-19 and deaths with a total of 23 columns and more than 4.5M records. It is updated daily with the new registered cases. https://www.datos.gov.co/Salud-y-Protecci-n-Social/Casos-positivos-de-COVID-19-en-Colombia/gt2j-8ykr
 2. Data corresponding to daily vaccination in Colombia (until July 15, 2021), extracted in a CSV file from the Our World On Data repository. This database corresponds to the daily compilation of vaccination data that OWOD does from official sources. https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations.
 
-Dataset---- Columns --- Rows
-Casos-------- 23 ----- 4.565.372
-Vacunación--- 12 ----- 33.672
+Raw datasets:
+```
+  Dataset      Columns       Rows
+1.Casos          23        4.565.372
+2.Vacunación     12         33.672
+```
+The two datasets were loaded to a database called "CovidColombia" created on a local server using Microsoft SQL Server. Two tables were created: "Cases" and "Vaccinations", corresponding to each CSV file.
 
 ![alt text]( "Raw data preview")
 
 
 
-
 ## Data Cleaning
+The two datasets were loaded to a database called "CovidColombia" created on a local server using Microsoft SQL Server. Two tables were created: "Cases" and "Vaccinations", corresponding to each CSV file.
 Ater extrating the data it needed to be cleaned so it was...and made the following changes:
 - Removed duplicates, errors and empty rows...
 - Splited columns...
