@@ -44,16 +44,10 @@ The two datasets were loaded to a database called "CovidColombia" created on a l
 Cleaning of both datasets was done with SQL in SQL Server Management Studio. All performed procedures are documented in the attached .SQL file (link). The following transformations were performed:
 - Conversion of date format "datetime" to "date" in all date type columns.
 - Replacement of record "1899-12-30 00: 00: 00.000" by null records (date records that were originally null in the csv were wrongly imported as "1899-12-30 00: 00: 00.000").
-- Change of column name from `estado` to `severidad`, as it better explains the content of the column that refers to the degree of severity of each case.
-- Change of column name from "recovered" by "status", as it better explains the content of the column referring to the current status of the case: eg: active, recovered, deceased or n / a.
-- Correction of the names of municipalities and departments with accents and letter ñ.
+- Change of column name from `estado` to `severidad`, as it better explains the content of the column: the degree of severity of each case.
+- Change of column name from `recuperado` by `estado`, as it better explains the content of the column: the current status of the case.
+- Correction of the names of municipalities and departments with accents and letter `ñ`.
 - Correction of the names and ISO code of countries: accents, letter ñ and misspelled. 
-
-
-
-- Removed duplicates, errors and empty rows...
-- Splited columns...
-- Outliers were analized...
 
 ```sql
 --STANDARIZE DATE FORMAT: Converting "datetime" to "date".
