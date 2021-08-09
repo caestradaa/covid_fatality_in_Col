@@ -8,10 +8,10 @@
 - It was found that during the first 3 months after the start of vaccination (02-2021), there is no significant change that indicates a decrease in the fatality rate, however, from 05-2021 there is a notable decrease. It is much more evident in advanced age groups since they were a priority in the country's vaccination scheme.
 
 ## Problem statement
-This project seeks to have a deeper knowledge of the behaviour of the pandemic in Colombia and to know specifically if the vaccination process is being effective or not. If it is, to what extent, and also, what is the trend in the future according to the rate of vaccination rithm and the rate of infections.
+This project seeks to have a deeper knowledge of the behaviour of the pandemic in Colombia and to know specifically if the vaccination process is being effective or not. If it is, to what extent, and also, what is the trend in the future according to the rate of vaccination and the rate of infections.
 <!---This pandemic has put us to the test as humanity, exposing the fragility of our economic systems, however, it has also been a trigger to reflect on our consumer lifestyle and accelerate the transformation towards new, more sustainable production models.-->
 
-### Some questions to answer
+#### Some questions to answer:
 - What proportion of the total population and infected population has died from Covid-19?
 - How many vaccine doses have been administered to date? How many people have received at least one dose? How many are fully vaccinated?
 - How has the Covid-19 fatality rate evolved from the start of the pandemic until today?
@@ -26,7 +26,7 @@ All the data required for this project was searched from multiple sources on the
 1. Cases: Official data of positive cases of Covid-19 in Colombia (until July 14, 2021), extracted in a CSV file from the official repository of the National Institute of Health. This dataset contains all the information corresponding to cases with a positive diagnosis of Covid-19 and deaths with a total of 23 columns and 4.565.372 records. It is updated daily with the new registered cases. https://www.datos.gov.co/Salud-y-Protecci-n-Social/Casos-positivos-de-COVID-19-en-Colombia/gt2j-8ykr
 2. Vaccination: Data corresponding to daily vaccination in Colombia (until July 15, 2021), extracted in a CSV file from the Our World On Data repository. It has 12 columns and 33.672 rows that corresponds to the daily compilation of vaccination data that OWOD does from official sources. https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations.
 
-Loading raw datasets:
+#### Loading raw datasets:
 <!---
 ```
   Dataset      Columns       Rows
@@ -47,7 +47,33 @@ Cleaning of both datasets was done with SQL in SQL Server Management Studio. All
 - Outliers were analized...
 - Cleaninng process and sql scrips
 
+```sql
+--STANDARIZE DATE FORMAT: Converting "datetime" to "date":
+
+SELECT TOP 10 fecha_reporte_web, CONVERT(DATE, fecha_reporte_web), fecha_muerte, CONVERT(DATE, fecha_muerte)
+FROM Casos
+ORDER BY id_caso;
+
+ALTER TABLE Casos
+ALTER COLUMN fecha_reporte_web DATE;
+
+ALTER TABLE Casos
+ALTER COLUMN fecha_muerte DATE;
+```
+```sql
+--CORRECTION OF DATE “1899-12-30” TO NULL: Correction of records that were wrongly imported with the date of '1899-12-30'
+
+SELECT fecha_muerte FROM Casos WHERE fecha_muerte = '1899-12-30'
+
+UPDATE Casos
+SET fecha_muerte = NULL
+WHERE fecha_muerte = '1899-12-30'
+```
+
+
 ![alt text]( "Clean data preview")
+
+
 
 
 
