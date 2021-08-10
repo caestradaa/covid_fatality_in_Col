@@ -1,11 +1,15 @@
 # Project: Effect of Vaccines on Covid-19 fatality in Colombia (currently working on it)
 *Data analysis project about the effect of vaccines on covid-19 fatality in Colombia.*
 
+
+
 ## Overview
 - A data analysis on Covid-19 in Colombia was made in order to understand the effects that mass vaccination is having on the fatality rate, and determine if there really is a positive impact on vaccinated population.
 - Two datasets were used: Covid-19 positive cases data in Colombia extracted from the oficial repository of the National Institute of Health (4.5M rows up to July 14, 2021), and Vaccination data extracted from the official Our World in Data repository (127 rows).
 - Project tools: SQL Server and ADS for loading and cleaning data. SQL and Python for exploratory analysis on a Jupyter notebook via %sql magic (ipython-sql).
 - It was found that during the first 3 months after the start of vaccination, there is no significant change in the fatality rate, however, from 06-2021 there is a notable decrease. In people older than 70 years fatality rate has decreased on average by 21.25%. <!---In the age group from 70 to 79 fatality rate has decreased by 25.27%.-->
+
+
 
 ## Problem statement
 This project seeks to have a deeper knowledge of the behaviour of the pandemic in Colombia and to know specifically if the vaccination process is being effective or not. If it is, to what extent, and also, what is the trend in the future according to the rate of vaccination and the rate of infections.
@@ -21,10 +25,11 @@ This project seeks to have a deeper knowledge of the behaviour of the pandemic i
 - According to the current vaccination rate, when would 70% of the population be fully vaccinated?
 
 
+
 ## Data Collection
 All the data required for this project was searched from multiple sources on the web, from official government websites to the repositories of recognized organizations for data collection and analysis.
-1. Cases: Official data of positive cases of Covid-19 in Colombia (until July 14, 2021), extracted in a CSV file from the official repository of the National Institute of Health. This dataset contains all the information corresponding to cases with a positive diagnosis of Covid-19 and deaths with a total of 23 columns and 4.565.372 records. It is updated daily with the new registered cases. [INS Cases Database](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Casos-positivos-de-COVID-19-en-Colombia/gt2j-8ykr "Casos positivos de COVID19 en Colombia").
-2. Vaccination: Data corresponding to daily vaccination in Colombia (until July 15, 2021), extracted in a CSV file from the Our World On Data repository. It has 12 columns and 33.672 rows that corresponds to the daily compilation of vaccination data that OWOD does from official sources. [Vaccinations](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations "Vaccinations").
+1. Cases: Official data of positive cases of Covid-19 in Colombia (until July 14, 2021), extracted in a CSV file from the official repository of the National Institute of Health. This dataset contains all the information corresponding to cases with a positive diagnosis of Covid-19 and deaths with a total of 23 columns and 4.565.372 records. It is updated daily with the new registered cases. [INS Cases dataset](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Casos-positivos-de-COVID-19-en-Colombia/gt2j-8ykr "Casos positivos de COVID19 en Colombia").
+2. Vaccination: Data corresponding to daily vaccination in Colombia (until July 15, 2021), extracted in a CSV file from the Our World On Data repository. It has 12 columns and 33.672 rows that corresponds to the daily compilation of vaccination data that OWOD does from official sources. [Vaccinations dataset](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations "Vaccinations").
 
 #### Loading raw datasets:
 <!---
@@ -41,15 +46,14 @@ The two datasets were loaded to a database called "CovidColombia" created on a l
 
 
 ## Data Cleaning
-Cleaning of both datasets was done with SQL in SQL Server Management Studio. All performed procedures are documented in the attached .SQL file (link). The following transformations were performed:
+Cleaning of both datasets was done with SQL in SQL Server Management Studio. All performed procedures are documented in the attached .SQL file (link). The following transformations were performed:  <!---[I'm a relative reference to a repository file](../blob/master/LICENSE)-->
 #### 1. Cases:
 - Conversion of date format "datetime" to "date" in all date type columns.
 - Replacement of record "1899-12-30 00: 00: 00.000" by null records (date records that were originally null in the csv were wrongly imported as "1899-12-30 00: 00: 00.000").
 - Change of column name from `estado` to `severidad`, as it better explains the content of the column: the degree of severity of each case.
 - Change of column name from `recuperado` by `estado`, as it better explains the content of the column: the current status of the case.
 - *Correction of the names of municipalities and departments with wrong characters.
-- *Correction of the names and ISO code of countrie wrong characterss: accents, letter ñ and misspelled.
- 
+- *Correction of the names and ISO code of countrie wrong characterss: accents, letter ñ and misspelled.  
  **<font size="0.5">Not necessary for this analysis but for future ones.</font>*
 
 Some procedures executed:
@@ -112,15 +116,31 @@ ORDER BY fecha
 ## Exploratory Data Analysis (EDA)
 - 4M records, 10 age groups, 2 geners were analized.
 
-### Considerations/Calculations and Explanations
+#### Considerations:
 - Fatality rate: proportion of deaths compared to the total number of people diagnosed.
-- Mortality rate: proportion of deaths per unit of population (100,000 generally used)
-- Age group:
-- The population estimate used to calculate proportions metrics is based on the last revision of the United Nations World Population Prospects. The exact values can be viewed here. 
+- Mortality rate: proportion of deaths per unit of population (100,000 generally used).
+- The total population estimate of Colombia (50.339.000 habitants) used to calculate proportions metrics is based on the last revision of the United Nations World Population Prospects. 
+- Age group: group made up of people of the same or similar age. Cases were classified into 10 age groups.
 
 ![alt text]( "Count")
 
+1. Total Cases and Proportion of the population infected  
+`%sql SELECT COUNT(*) FROM Casos`
+```python
+total_pob = 50339000
+total_cases = 4565372
+prop_pop_inf = round((total_cases/total_pob)*100,2)
+print('Total cases reported to date =',total_cases)
+print('Proportion of the population infected =',prop_pop_inf, '%')
+```
+Total cases reported to date = 4565372  
+Proportion of the population infected = 9.07 %
+
+2. Total Deaths and Fatality Rate reported to date
+
 ## Distribution analysis: 
+
+
 
 ![alt text]( "")
 ![alt text]( "")
