@@ -46,9 +46,12 @@ Cleaning of both datasets was done with SQL in SQL Server Management Studio. All
 - Replacement of record "1899-12-30 00: 00: 00.000" by null records (date records that were originally null in the csv were wrongly imported as "1899-12-30 00: 00: 00.000").
 - Change of column name from `estado` to `severidad`, as it better explains the content of the column: the degree of severity of each case.
 - Change of column name from `recuperado` by `estado`, as it better explains the content of the column: the current status of the case.
-- Correction of the names of municipalities and departments with accents and letter `ñ`.
-- Correction of the names and ISO code of countries: accents, letter ñ and misspelled.
+- *Correction of the names of municipalities and departments with wrong characters.
+- *Correction of the names and ISO code of countrie wrong characterss: accents, letter ñ and misspelled.
+**Not necessary for this analysis but for future ones.*
+\
 
+Some procedures executed:
 ```sql
 --STANDARIZE DATE FORMAT: Converting "datetime" to "date".
 SELECT TOP 10 fecha_reporte_web, CONVERT(DATE, fecha_reporte_web), fecha_muerte, CONVERT(DATE, fecha_muerte)
@@ -72,7 +75,7 @@ WHERE fecha_muerte = '1899-12-30';
 EXEC SP_RENAME 'Casos.recuperado', 'estado', 'COLUMN';
 
 ```
-- Finally retrieving only the columns that interest to this analysis:
+Finally retrieving only the columns that interest to this analysis:
 
 ```sql
 --RETRIEVING CLEANED DATA SET
