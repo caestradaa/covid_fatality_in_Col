@@ -134,7 +134,7 @@ Total cases reported to date = 4565372
 Proportion of the population infected = 9.07 %
 
 ## Distribution analysis: 
-- Cases by state:  
+#### Cases by state:  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_state.png "")  
 General Mortality rate = 227.13 per 100,000 inhabitants
 General Fatality rate = 2.504 %
