@@ -42,6 +42,7 @@ The two datasets were loaded to a database called "CovidColombia" created on a l
 
 ## Data Cleaning
 Cleaning of both datasets was done with SQL in SQL Server Management Studio. All performed procedures are documented in the attached .SQL file (link). The following transformations were performed:
+#### 1. Cases:
 - Conversion of date format "datetime" to "date" in all date type columns.
 - Replacement of record "1899-12-30 00: 00: 00.000" by null records (date records that were originally null in the csv were wrongly imported as "1899-12-30 00: 00: 00.000").
 - Change of column name from `estado` to `severidad`, as it better explains the content of the column: the degree of severity of each case.
@@ -85,15 +86,23 @@ ORDER BY fecha_reporte_web
 
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Clean_dataset_preview_Casos_azure.png "Clean data preview")
 
+Column explanation:
+- `Fecha_reporte_web`: date the case was reported
+- `id_de_caso`: unique id of the case
+- `edad`: age of person with positive diagnosis
+- `unidad_de_medida_edad`: unit of measure of the person's age. (1) year, (2) months, (3) days.
+- `sexo`: male (M) or female (F) gender.
+- `estado`: the current status of the case. It can be Active (Activo), Recovered (Recuperado), Death (Fallecido) or N/A. N/A refers to the non-COVID deceased.
+- `fecha_de_muerte`: Declared date of death.
 
-
-
-
-
-## Considerations/Calculations and Explanations
-- Fatality rate:
-- Mortality rate:
-- Age group
+#### 1. VaccinationsCases:
+- Retrieving data concerning Colombia.
+```sql
+SELECT *
+FROM Vaccination
+WHERE location = 'Colombia'
+ORDER BY fecha_reporte_web
+```
 
 ![alt text]( "")
 
@@ -102,6 +111,12 @@ ORDER BY fecha_reporte_web
 
 ## Exploratory Data Analysis (EDA)
 - 4M records, 10 age groups, 2 geners were analized.
+
+### Considerations/Calculations and Explanations
+- Fatality rate: proportion of deaths compared to the total number of people diagnosed.
+- Mortality rate: proportion of deaths per unit of population (100,000 generally used)
+- Age group:
+- The population estimate used to calculate proportions metrics is based on the last revision of the United Nations World Population Prospects. The exact values can be viewed here. 
 
 ![alt text]( "Count")
 
