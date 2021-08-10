@@ -114,7 +114,6 @@ ORDER BY fecha
 
 
 ## Exploratory Data Analysis (EDA)
-- 4M records, 10 age groups, 2 geners were analized.
 
 #### Considerations:
 - Fatality rate: proportion of deaths compared to the total number of people diagnosed.
@@ -124,7 +123,7 @@ ORDER BY fecha
 
 ![alt text]( "Count")
 
-1. Total Cases and Proportion of the population infected  
+- Total Cases and Proportion of the population infected  
 `%sql SELECT COUNT(*) FROM Casos`
 ```python
 total_pob = 50339000
@@ -136,11 +135,11 @@ print('Proportion of the population infected =',prop_pop_inf, '%')
 Total cases reported to date = 4565372  
 Proportion of the population infected = 9.07 %
 
-2. Total Deaths and Fatality Rate reported to date
-
 ## Distribution analysis: 
+- Cases by state:
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_state.png "")
-
+General Mortality rate = 227.13 per 100,000 inhabitants
+General Fatality rate = 2.504 %
 
 ![alt text]( "")
 
