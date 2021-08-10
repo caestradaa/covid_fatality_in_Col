@@ -78,13 +78,12 @@ EXEC SP_RENAME 'Casos.recuperado', 'estado', 'COLUMN';
 Finally retrieving only the columns that interest to this analysis in the notebook:
 
 ```sql
-%%sql
 SELECT TOP 5 fecha_reporte_web, id_caso, edad, unidad_medida_edad, sexo, estado, fecha_muerte
 FROM Casos
 ORDER BY fecha_reporte_web
 ```
 
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Clean_dataset_preview_Casos.png "Clean data preview")
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Clean_dataset_preview_Casos_azure.png "Clean data preview")
 
 
 
