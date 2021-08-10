@@ -48,8 +48,8 @@ Cleaning of both datasets was done with SQL in SQL Server Management Studio. All
 - Change of column name from `recuperado` by `estado`, as it better explains the content of the column: the current status of the case.
 - *Correction of the names of municipalities and departments with wrong characters.
 - *Correction of the names and ISO code of countrie wrong characterss: accents, letter ñ and misspelled.
-**Not necessary for this analysis but for future ones.*
-\
+ 
+ **<font size="0.5">Not necessary for this analysis but for future ones.</font>*
 
 Some procedures executed:
 ```sql
@@ -75,17 +75,16 @@ WHERE fecha_muerte = '1899-12-30';
 EXEC SP_RENAME 'Casos.recuperado', 'estado', 'COLUMN';
 
 ```
-Finally retrieving only the columns that interest to this analysis:
+Finally retrieving only the columns that interest to this analysis in the notebook:
 
 ```sql
---RETRIEVING CLEANED DATA SET
-SELECT TOP 10 fecha_reporte_web, id_caso, edad, unidad_medida_edad, sexo, estado, fecha_muerte
+%%sql
+SELECT TOP 5 fecha_reporte_web, id_caso, edad, unidad_medida_edad, sexo, estado, fecha_muerte
 FROM Casos
 ORDER BY fecha_reporte_web
 ```
 
-
-![alt text]( "Clean data preview")
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Clean_dataset_preview_Casos.png "Clean data preview")
 
 
 
