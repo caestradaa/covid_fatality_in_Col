@@ -121,11 +121,9 @@ ORDER BY fecha
 - The total population estimate of Colombia (50.339.000 habitants) used to calculate proportions metrics is based on the last revision of the United Nations World Population Prospects. 
 - Age group: group made up of people of the same or similar age. Cases were classified into 10 age groups.
 
-![alt text]( "Count")
-
 - Total Cases and Proportion of the population infected  
-`%sql SELECT COUNT(*) FROM Casos`
 ```python
+%sql SELECT COUNT(*) FROM Casos`
 total_pob = 50339000
 total_cases = 4565372
 prop_pop_inf = round((total_cases/total_pob)*100,2)
@@ -136,8 +134,8 @@ Total cases reported to date = 4565372
 Proportion of the population infected = 9.07 %
 
 ## Distribution analysis: 
-- Cases by state:
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_state.png "")
+- Cases by state:  
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_state.png "")  
 General Mortality rate = 227.13 per 100,000 inhabitants
 General Fatality rate = 2.504 %
 
