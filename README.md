@@ -95,13 +95,13 @@ Column explanation:
 - `estado`: the current status of the case. It can be Active (Activo), Recovered (Recuperado), Death (Fallecido) or N/A. N/A refers to the non-COVID deceased.
 - `fecha_de_muerte`: Declared date of death.
 
-#### 1. VaccinationsCases:
+#### 2. Vaccinations:
 - Retrieving data concerning Colombia.
 ```sql
 SELECT *
-FROM Vaccination
+FROM Vaccinations
 WHERE location = 'Colombia'
-ORDER BY fecha_reporte_web
+ORDER BY fecha
 ```
 
 ![alt text]( "")
