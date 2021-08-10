@@ -28,8 +28,8 @@ This project seeks to have a deeper knowledge of the behaviour of the pandemic i
 
 ## Data Collection
 All the data required for this project was searched from multiple sources on the web, from official government websites to the repositories of recognized organizations for data collection and analysis.
-1. Cases: Official data of positive cases of Covid-19 in Colombia (until July 14, 2021), extracted in a CSV file from the official repository of the National Institute of Health. This dataset contains all the information corresponding to cases with a positive diagnosis of Covid-19 and deaths with a total of 23 columns and 4.565.372 records. It is updated daily with the new registered cases. [INS Cases dataset](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Casos-positivos-de-COVID-19-en-Colombia/gt2j-8ykr "Casos positivos de COVID19 en Colombia").
-2. Vaccination: Data corresponding to daily vaccination in Colombia (until July 15, 2021), extracted in a CSV file from the Our World On Data repository. It has 12 columns and 33.672 rows that corresponds to the daily compilation of vaccination data that OWOD does from official sources. [Vaccinations dataset](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations "Vaccinations").
+1. Cases: Official data of positive cases of Covid-19 in Colombia (until July 14, 2021), extracted in a CSV file from the official repository of the National Institute of Health. 23 columns and 4.565.372 records. It is updated daily with the new registered cases. [INS Cases dataset](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Casos-positivos-de-COVID-19-en-Colombia/gt2j-8ykr "Casos positivos de COVID19 en Colombia").
+2. Vaccination: Data corresponding to daily vaccination in Colombia (until July 15, 2021), extracted in a CSV file from the Our World On Data repository compilated from official sources. 12 columns and 33.672 rows. [Vaccinations dataset](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations "Vaccinations").
 
 #### Loading raw datasets:
 <!---
@@ -39,7 +39,7 @@ All the data required for this project was searched from multiple sources on the
 2.Vacunación     12         33.672
 ```
 -->
-The two datasets were loaded to a database called "CovidColombia" created on a local server using Microsoft SQL Server. Two tables were created: "Cases" and "Vaccinations", corresponding to each CSV file. As shown above, there were inconsistencies in the transformation of the data types and erroneous data was written in the null records of date fields. That and other bugs were fixed in data cleaning.
+The two datasets were loaded to a database called "CovidColombia" created on a local server using Microsoft SQL Server. Two tables were created: "Cases" and "Vaccinations", corresponding to each CSV file. As shown above, erroneous data was written in the null records of date fields. That and other bugs were fixed in data cleaning.
 
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Raw_dataset_preview_Casos_Data_errors.png "Raw data preview")
 
@@ -139,10 +139,9 @@ Proportion of the population infected = 9.07 %
 2. Total Deaths and Fatality Rate reported to date
 
 ## Distribution analysis: 
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_state.png "")
 
 
-
-![alt text]( "")
 ![alt text]( "")
 
 ## Correlation analysis
