@@ -121,7 +121,7 @@ ORDER BY fecha
 - The total population estimate of Colombia (50.339.000 habitants) used to calculate proportions metrics is based on the last revision of the United Nations World Population Prospects. 
 - Age group: group made up of people of the same or similar age. Cases were classified into 10 age groups.
 
-- Total Cases and Proportion of the population infected  
+#### Total Cases and Proportion of the population infected  
 ```python
 %sql SELECT COUNT(*) FROM Casos`
 total_pob = 50339000
