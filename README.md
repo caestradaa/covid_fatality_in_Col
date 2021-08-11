@@ -118,8 +118,7 @@ Exploratory analisys was carried out by making SQL queries to the database (via 
 ```python
 r0 = %sql SELECT COUNT(*) FROM Casos
 total_cases = r0[0][0]
-```
-```python
+
 total_pop = 50339000
 prop_pop_inf = round((total_cases/total_pop)*100,2)
 print('Total cases reported to date =',total_cases)
