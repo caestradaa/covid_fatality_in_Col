@@ -16,8 +16,8 @@ This project seeks to have a deeper knowledge of the behaviour of the pandemic i
 <!---This pandemic has put us to the test as humanity, exposing the fragility of our economic systems, however, it has also been a trigger to reflect on our consumer lifestyle and accelerate the transformation towards new, more sustainable production models.-->
 
 #### Some questions to answer:
-- What proportion of the total population and infected population has died from Covid-19?
-- How many vaccine doses have been administered to date? How many people have received at least one dose? How many are fully vaccinated?
+<!--- - What proportion of the total population and infected population has died from Covid-19?
+- How many vaccine doses have been administered to date? How many people have received at least one dose? How many are fully vaccinated?-->
 - How has the Covid-19 fatality rate evolved from the start of the pandemic until today?
 - Is there a change in trend at any point after the start of vaccination? In general, by age group and by gender.
 - Which age group already vaccinated has had a better response to vaccines?
@@ -89,7 +89,7 @@ Column explanation:
 - `unidad_de_medida_edad`: unit of measure of the person's age. (1) year, (2) months, (3) days.
 - `sexo`: male (M) or female (F) gender.
 - `estado`: the current status of the case. It can be Active (Activo), Recovered (Recuperado), Death (Fallecido) or N/A. N/A refers to the non-COVID deceased.
-- `fecha_de_muerte`: Declared date of death.
+- `fecha_de_muerte`: declared date of death.
 
 #### 2. Vaccinations:
 - Retrieving data concerning Colombia.
@@ -106,25 +106,27 @@ ORDER BY fecha
 
 
 ## Exploratory Data Analysis (EDA)
+Exploratory analisys was carried out by making SQL queries to the database (via %sql magic) from a Jupyter notebook, as well as some calculations and visualizations with Python. This readme file presents the summary of the analysis results, full code and details can be found in the Jupyter notebook.
 
 #### Considerations:
 - Fatality rate: proportion of deaths compared to the total number of people diagnosed.
 - Mortality rate: proportion of deaths per unit of population (100,000 generally used).
-- The total population estimate of Colombia (50.339.000 habitants) used to calculate proportions metrics is based on the last revision of the United Nations World Population Prospects. 
+- The total population estimate of Colombia (50.339.000 habitants) is based on the last revision of the United Nations World Population Prospects. 
 - Age group: group made up of people of the same or similar age. Cases were classified into 10 age groups.
 
-#### Total Cases and Proportion of the population infected  
+#### Total Cases and Proportion of the population infected:
 ```python
-%sql SELECT COUNT(*) FROM Casos
+r0 = %sql SELECT COUNT(*) FROM Casos
+total_cases = r0[0][0]
 ```
-> Total cases reported to date = 4565372  
 ```python
-total_pob = 50339000
-total_cases = 4565372
-prop_pop_inf = round((total_cases/total_pob)*100,2)
+total_pop = 50339000
+prop_pop_inf = round((total_cases/total_pop)*100,2)
+print('Total cases reported to date =',total_cases)
 print('Proportion of the population infected =',prop_pop_inf, '%')
 ```
-> Proportion of the population infected = 9.07 %
+> Total cases reported to date = 4.565.372  
+> Proportion of the population infected = 9.07 %  
 
 ## Distribution analysis: 
 #### Cases by status:  
@@ -142,7 +144,18 @@ df_r1
 | Activo      | 120673     | 2.64        |
 | Recuperado  | 4317436    | 94.57       |-->
 
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_status_with_proportion.PNG "Cases by status")  
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_status_with_proportion.PNG "Cases by status") 
+
+```python
+r3 = %sql SELECT COUNT(estado) FROM Casos WHERE estado = 'Fallecido'
+total_deaths = r3[0][0]
+gen_mortality = (total_deaths*100000/total_pop)
+gen_fatality = (total_deaths/total_cases)*100
+
+print('Total deaths =', total_deaths)
+print('General Mortality rate =', round(gen_mortality,2), 'per 100,000 inhabitants')
+print('General Fatality rate =', round(gen_fatality,3), '%')
+```  
 > Total deaths = 114.337  
 > General Mortality rate = 227.13 per 100,000 inhabitants  
 > General Fatality rate = 2.50%  
@@ -151,7 +164,7 @@ df_r1
 #### Cases, deaths and fatality rate by gender:  
 Retrieving the number of cases and deaths by gendedr, calculating fatality rate and settina a dataframe with the results:  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatality_by_gender.png "Cases_deaths_fatality_by_gender")  
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatality_by_gender_piechart.png "Deaths_by_gender_piechart")
+![alt text]( "Deaths_by_gender_piechart")
 > The proportion of infected people is similar in both sexes, however, the fatality rate is much higher in men (3.23%) than in women (1.85%).  
 > According to the pie chart almost two-thirds (2/3) two-thirds of the deceased are men.  
 > 38.67% of the total deaths have been women and 61.33% have been men.  
