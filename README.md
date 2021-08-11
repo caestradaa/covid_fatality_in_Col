@@ -28,18 +28,11 @@ This project seeks to have a deeper knowledge of the behaviour of the pandemic i
 
 ## Data Collection
 All the data required for this project was searched from multiple sources on the web, from official government websites to the repositories of recognized organizations for data collection and analysis.
-1. Cases: Official data of positive cases of Covid-19 in Colombia (until July 14, 2021), extracted in a CSV file from the official repository of the National Institute of Health. 23 columns and 4.565.372 records. It is updated daily with the new registered cases. [INS Cases dataset](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Casos-positivos-de-COVID-19-en-Colombia/gt2j-8ykr "Casos positivos de COVID19 en Colombia").
-2. Vaccination: Data corresponding to daily vaccination in Colombia (until July 15, 2021), extracted in a CSV file from the Our World On Data repository compilated from official sources. 12 columns and 33.672 rows. [Vaccinations dataset](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations "Vaccinations").
+1. "Cases": Official data of positive cases of Covid-19 in Colombia (until July 14, 2021), extracted in a CSV file from the official repository of the National Institute of Health. 23 columns and 4.565.372 records. It is updated daily with the new registered cases. [INS Cases dataset](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Casos-positivos-de-COVID-19-en-Colombia/gt2j-8ykr "Casos positivos de COVID19 en Colombia").
+2. "Vaccinations": Data corresponding to daily vaccination in Colombia (until July 15, 2021), extracted in a CSV file from the Our World On Data repository compilated from official sources. 12 columns and 33.672 rows. [Vaccinations dataset](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations "Vacunación").
 
 #### Loading raw datasets:
-<!---
-```
-  Dataset      Columns       Rows
-1.Casos          23        4.565.372
-2.Vacunación     12         33.672
-```
--->
-The two datasets were loaded to a database called "CovidColombia" created on a local server using Microsoft SQL Server. Two tables were created: "Cases" and "Vaccinations", corresponding to each CSV file. As shown above, erroneous data was written in the null records of date fields. That and other bugs were fixed in data cleaning.
+The two datasets were loaded to a database called "CovidColombia" created on a local server using Microsoft SQL Server. Two tables were created: "Casos" and "Vacunación", corresponding to each CSV file. As shown above, erroneous data was written in the null records of date fields. Those bugs were fixed in the data cleaning.
 
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Raw_dataset_preview_Casos_Data_errors.png "Raw data preview")
 
@@ -52,8 +45,7 @@ Cleaning of both datasets was done with SQL in SQL Server Management Studio. All
 - Replacement of record "1899-12-30 00: 00: 00.000" by null records (date records that were originally null in the csv were wrongly imported as "1899-12-30 00: 00: 00.000").
 - Change of column name from `estado` to `severidad`, as it better explains the content of the column: the degree of severity of each case.
 - Change of column name from `recuperado` by `estado`, as it better explains the content of the column: the current status of the case.
-- *Correction of the names of municipalities and departments with wrong characters.
-- *Correction of the names and ISO code of countrie wrong characterss: accents, letter ñ and misspelled.  
+- *Correction of the names of municipalities, departments and countries with wrong characters. ISO code was corrected too.  
  **<font size="0.5">Not necessary for this analysis but for future ones.</font>*
 
 Some procedures executed:
@@ -123,18 +115,31 @@ ORDER BY fecha
 
 #### Total Cases and Proportion of the population infected  
 ```python
-%sql SELECT COUNT(*) FROM Casos`
+%sql SELECT COUNT(*) FROM Casos
+```
+> Total cases reported to date = 4565372  
+```python
 total_pob = 50339000
 total_cases = 4565372
 prop_pop_inf = round((total_cases/total_pob)*100,2)
-print('Total cases reported to date =',total_cases)
 print('Proportion of the population infected =',prop_pop_inf, '%')
 ```
-Total cases reported to date = 4565372  
-Proportion of the population infected = 9.07 %
+> Proportion of the population infected = 9.07 %
 
 ## Distribution analysis: 
 #### Cases by state:  
+```python
+r1 = %sql SELECT estado, COUNT(estado) AS cantidad FROM Casos GROUP BY estado ORDER BY cantidad
+df_r1 = r1.DataFrame()
+df_r1['porcentaje'] = round((df_r1['cantidad']/total_cases)*100,2)
+df_r1
+==================================
+	estado	    cantidad	porcentaje
+0	N/A	         12926	     0.28
+1	Fallecido	   114337	     2.50
+2	Activo	     120673	     2.64
+3	Recuperado	 4317436	     94.57
+```
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_state.png "")  
 General Mortality rate = 227.13 per 100,000 inhabitants
 General Fatality rate = 2.504 %
