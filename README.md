@@ -133,14 +133,24 @@ r1 = %sql SELECT estado, COUNT(estado) AS cantidad FROM Casos GROUP BY estado OR
 df_r1 = r1.DataFrame()
 df_r1['porcentaje'] = round((df_r1['cantidad']/total_cases)*100,2)
 df_r1
-==================================
-	estado	    cantidad	porcentaje
-0	N/A	         12926	     0.28
-1	Fallecido	   114337	     2.50
-2	Activo	     120673	     2.64
-3	Recuperado	 4317436	     94.57
+==================================================================================================
+
+| estado      | cantidad   | porcentaje  |
+| ----------- |:----------:| -----------:|
+| N/A         | 12926      | 0.28        |
+| Fallecido   | 114337     | 2.50        |
+| Activo      | 120673     | 2.64        |
+| Recuperado  | 4317436    | 94.57       |
+
 ```
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_state.png "")  
+| estado      | cantidad   | porcentaje  |
+| ----------- |:----------:| -----------:|
+| N/A         | 12926      | 0.28        |
+| Fallecido   | 114337     | 2.50        |
+| Activo      | 120673     | 2.64        |
+| Recuperado  | 4317436    | 94.57       |
+
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_status_with_proportion.PNG "Cases by status")  
 General Mortality rate = 227.13 per 100,000 inhabitants
 General Fatality rate = 2.504 %
 
