@@ -83,9 +83,9 @@ ORDER BY fecha_reporte_web
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Clean_dataset_preview_Casos_azure.png "Clean data preview")
 
 Column explanation:
-- `Fecha_reporte_web`: date the case was reported
-- `id_de_caso`: unique id of the case
-- `edad`: age of person with positive diagnosis
+- `Fecha_reporte_web`: date the case was reported.
+- `id_de_caso`: unique id of the case.
+- `edad`: age of person with positive diagnosis.
 - `unidad_de_medida_edad`: unit of measure of the person's age. (1) year, (2) months, (3) days.
 - `sexo`: male (M) or female (F) gender.
 - `estado`: the current status of the case. It can be Active (Activo), Recovered (Recuperado), Death (Fallecido) or N/A. N/A refers to the non-COVID deceased.
@@ -143,10 +143,10 @@ df_r1
 | Recuperado  | 4317436    | 94.57       |-->
 
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_status_with_proportion.PNG "Cases by status")  
-> Total deaths = 114.337
+> Total deaths = 114.337  
 > General Mortality rate = 227.13 per 100,000 inhabitants  
-> General Fatality rate = 2.50%.
-> 94.57% of infected people have recovered from Covid-19
+> General Fatality rate = 2.50%  
+> 94.57% of infected people have recovered from Covid-19.
 
 #### Cases, deaths and fatality rate by gender:  
 Retrieving the number of cases and deaths by gendedr, calculating fatality rate and settina a dataframe with the results:
