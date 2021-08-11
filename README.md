@@ -211,6 +211,38 @@ GROUP BY grupo_etario;
 ### Effect of vaccines on Fatality Rate
 Here we study how the fatality rate of each age group has evolved from month to month since the start of the pandemic. We will focus primarily on comparing the behavior of this measure before and after the start of vaccination in February 2021, looking for any positive effect on each age group.
 
+```python
+%%sql
+--CREATE VIEW agrupacion_por_mes_y_grupoetario AS
+WITH CTE3_casos (año, mes, grupo_etario, casos) AS (
+      SELECT YEAR(fecha_reporte_web) AS año, MONTH(fecha_reporte_web) AS mes, grupo_etario, COUNT(fecha_reporte_web) AS casos
+      FROM Casos_con_grupo_etario
+      GROUP BY YEAR(fecha_reporte_web), MONTH(fecha_reporte_web), grupo_etario
+      ),
+    CTE4_muertes (año, mes, grupo_etario, fallecidos) AS (
+      SELECT YEAR(fecha_muerte) AS año, MONTH(fecha_muerte) AS mes, grupo_etario, COUNT(fecha_muerte) AS fallecidos
+      FROM Casos_con_grupo_etario
+      GROUP BY YEAR(fecha_muerte), MONTH(fecha_muerte), grupo_etario, estado
+      HAVING estado = 'Fallecido'
+      )
+SELECT c.año, c.mes, c.grupo_etario, fallecidos, casos
+FROM CTE3_casos c
+LEFT JOIN CTE4_muertes m ON c.año = m.año AND c.mes = m.mes AND c.grupo_etario = m.grupo_etario
+```
+Calculating general Fatality Rate by **Month**:
+
+```python
+%%sql r4 <<
+SELECT CONCAT(año,'-', mes) AS año_mes, SUM(fallecidos) AS fallecidos, SUM(casos) AS casos, ROUND((CONVERT(FLOAT, SUM(fallecidos))/CONVERT(FLOAT,SUM(casos)))*100,2) AS letalidad
+FROM agrupacion_por_mes_y_grupoetario
+GROUP BY año, mes
+ORDER BY año, mes
+```
+
+```python
+df_letalidad_por_mes = r4.DataFrame()
+df_letalidad_por_mes.head()
+```
 
 ![alt text]( "")
 ![alt text]( "")
