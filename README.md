@@ -164,7 +164,7 @@ print('General Fatality rate =', round(gen_fatality,3), '%')
 #### Cases, deaths and fatality rate by gender:  
 Retrieving the number of cases and deaths by gendedr, calculating fatality rate and settina a dataframe with the results:  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatality_by_gender.png "Cases_deaths_fatality_by_gender")  
-![alt text]( "Deaths_by_gender_piechart")
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatality_by_gender_piechart.png "Deaths_by_gender_piechart")
 > The proportion of infected people is similar in both sexes, however, the fatality rate is much higher in men (3.23%) than in women (1.85%).  
 > According to the pie chart almost two-thirds (2/3) two-thirds of the deceased are men.  
 > 38.67% of the total deaths have been women and 61.33% have been men.  
