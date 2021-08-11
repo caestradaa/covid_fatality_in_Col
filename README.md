@@ -106,12 +106,10 @@ ORDER BY fecha
 
 
 ## Exploratory Data Analysis (EDA)
-Exploratory analisys was carried out by making SQL queries to the database (via %sql magic) from a Jupyter notebook, as well as some calculations and visualizations with Python. This readme file presents the summary of the analysis results, full code and details can be found in the Jupyter notebook.
-
-#### Considerations:
+Exploratory analisys was carried out by making SQL queries to the database (via %sql magic) from a Jupyter notebook, as well as some calculations and visualizations with Python. This readme file presents the summary of the analysis results, **full code and details can be found in the Jupyter notebook**. Considerations:
 - Fatality rate: proportion of deaths compared to the total number of people diagnosed.
 - Mortality rate: proportion of deaths per unit of population (100,000 generally used).
-- The total population estimate of Colombia (50.339.000 habitants) is based on the last revision of the United Nations World Population Prospects. 
+- The total population estimate of Colombia (50.339.000 habitants) is based on the last revision of the United Nations World Population Prospects.
 - Age group: group made up of people of the same or similar age. Cases were classified into 10 age groups.
 
 ### Total Cases and Proportion of the population infected:
@@ -124,11 +122,12 @@ prop_pop_inf = round((total_cases/total_pop)*100,2)
 print('Total cases reported to date =',total_cases)
 print('Proportion of the population infected =',prop_pop_inf, '%')
 ```
-> Total cases reported to date = 4.565.372  
-> Proportion of the population infected = 9.07 %  
+- Total cases reported to date = 4.565.372  
+- Proportion of the population infected = 9.07 %  
 
 ### Cases by status:  
-Retrieving the number of cases by status, calculating proportion of total cases:  
+Retrieving the number of cases by status and calculating the proportion from total cases:  
+
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_status_with_proportion.PNG "Cases by status") 
 
 ```python
@@ -141,25 +140,57 @@ print('Total deaths =', total_deaths)
 print('General Mortality rate =', round(gen_mortality,2), 'per 100,000 inhabitants')
 print('General Fatality rate =', round(gen_fatality,3), '%')
 ```  
-> Total deaths = 114.337  
-> General Mortality rate = 227.13 per 100,000 inhabitants  
-> General Fatality rate = 2.50%  
-> 94.57% of infected people have recovered from Covid-19.
+- Total deaths = 114.337  
+- General Mortality rate = 227.13 per 100,000 inhabitants  
+- General Fatality rate = 2.50%  
+- 94.57% of infected people have recovered from Covid-19.
 
 ### Cases, deaths and fatality rate by gender:  
 Retrieving the number of cases and deaths by gender, calculating fatality rate and setting a dataframe with the results:  
+
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatalityrate_by_gender.png "Cases_deaths_fatality_by_gender")  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatality_by_gender_piechart.png "Deaths_by_gender_piechart")
-> The proportion of infected people is similar in both sexes, however, the fatality rate is much higher in men (3.23%) than in women (1.85%). This means men are 42% more likely to die than women if they contract the virus.  
-> 38.67% of the total deaths have been women and 61.33% have been men.  
-> According to the pie chart almost two-thirds (2/3) of the deceased are men.   
+- The proportion of infected people is similar in both genders, however, the fatality rate is much higher in men (3.23%) than in women (1.85%). This means men are 42% more likely to die than women if they contract the virus.  
+- 38.67% of the total deaths have been women and 61.33% have been men.  
+- According to the pie chart almost two-thirds (2/3) of the deceased are men.   
 
 
-### Categorization of Cases by Age Group
+### Categorization of Cases by Age Group:
+In order to calculate the fatality rate of each group we created a VIEW called `Casos_con_grupo_etario` from the main dataset `Casos`.
+```python
+%%sql
+CREATE VIEW Casos_con_grupo_etario AS
+SELECT fecha_reporte_web, id_caso, edad, unidad_medida_edad, sexo, estado, fecha_muerte,
+CASE
+ WHEN unidad_medida_edad = 1 THEN
+   CASE
+     WHEN edad <= 4 THEN '0 - 04'
+     WHEN edad <= 9 THEN '05 - 09'
+     WHEN edad <= 19 THEN '10 - 19'
+     WHEN edad <= 29 THEN '20 - 29'
+     WHEN edad <= 39 THEN '30 - 39'
+     WHEN edad <= 49 THEN '40 - 49'
+     WHEN edad <= 59 THEN '50 - 59'
+     WHEN edad <= 69 THEN '60 - 69'
+     WHEN edad <= 79 THEN '70 - 79'
+     ELSE '80 o más'
+   END
+ ELSE '0 - 04'
+END AS grupo_etario
+FROM Casos;
+```
 
+Next, we group cases and deaths by age group and gender in different queries using **CTEs**. Then we **JOIN** the results into a single table and then create a new VIEW from it `agrupacion_por_grupoetario_y_sexo`, getting the number of **Cases and Deaths by Age Group and Gender** in the same table. Then, we calculate fatality rate for each age group and gender and retrive **segment of the population with the highest fatality rate**:
 
-
-![alt text]( "")
+```python
+%%sql
+WITH CTE1_letalidad (grupo_etario, sexo, fallecidos, casos, letalidad) AS (
+    SELECT *, ROUND((CONVERT(FLOAT, fallecidos)/CONVERT(FLOAT, casos))*100,2) AS letalidad
+    FROM agrupacion_por_grupoetario_y_sexo
+    )
+SELECT * FROM CTE1_letalidad WHERE letalidad = (SELECT MAX(letalidad) FROM CTE1_letalidad);
+```  
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Segment_highes_%20fatality_rate.png "segment with the highest fatality rate")
 
 ## Correlation analysis
 
