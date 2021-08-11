@@ -127,32 +127,33 @@ print('Proportion of the population infected =',prop_pop_inf, '%')
 > Proportion of the population infected = 9.07 %
 
 ## Distribution analysis: 
-#### Cases by state:  
+#### Cases by status:  
 ```python
 r1 = %sql SELECT estado, COUNT(estado) AS cantidad FROM Casos GROUP BY estado ORDER BY cantidad
 df_r1 = r1.DataFrame()
 df_r1['porcentaje'] = round((df_r1['cantidad']/total_cases)*100,2)
 df_r1
-==================================================================================================
-
-| estado      | cantidad   | porcentaje  |
-| ----------- |:----------:| -----------:|
-| N/A         | 12926      | 0.28        |
-| Fallecido   | 114337     | 2.50        |
-| Activo      | 120673     | 2.64        |
-| Recuperado  | 4317436    | 94.57       |
-
 ```
+<!---
 | estado      | cantidad   | porcentaje  |
 | ----------- |:----------:| -----------:|
 | N/A         | 12926      | 0.28        |
 | Fallecido   | 114337     | 2.50        |
 | Activo      | 120673     | 2.64        |
-| Recuperado  | 4317436    | 94.57       |
+| Recuperado  | 4317436    | 94.57       |-->
 
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_status_with_proportion.PNG "Cases by status")  
-General Mortality rate = 227.13 per 100,000 inhabitants
-General Fatality rate = 2.504 %
+> Total deaths = 114337
+> General Mortality rate = 227.13 per 100,000 inhabitants  
+> General Fatality rate = 2.504 %
+
+#### Cases, deaths and fatality rate by gender:  
+Retrieving the number of cases and deaths by gendedr, calculating fatality rate and settina a dataframe with the results:
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatality_by_gender.png "Cases_deaths_fatality_by_gender")  
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatality_by_gender_piechart.png "Deaths_by_gender_piechart")
+> The proportion of infected people is similar in both sexes, however, the fatality rate is much higher in men (3.23%) than in women (1.85%).
+> According to the pie chart almost two-thirds (2/3) two-thirds of the deceased are men.
+> 38.67% of the total deaths have been women and 61.33% have been men.
 
 ![alt text]( "")
 
