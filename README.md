@@ -128,20 +128,7 @@ print('Proportion of the population infected =',prop_pop_inf, '%')
 > Proportion of the population infected = 9.07 %  
 
 ### Cases by status:  
-```python
-r1 = %sql SELECT estado, COUNT(estado) AS cantidad FROM Casos GROUP BY estado ORDER BY cantidad
-df_r1 = r1.DataFrame()
-df_r1['porcentaje'] = round((df_r1['cantidad']/total_cases)*100,2)
-df_r1
-```
-<!---
-| estado      | cantidad   | porcentaje  |
-| ----------- |:----------:| -----------:|
-| N/A         | 12926      | 0.28        |
-| Fallecido   | 114337     | 2.50        |
-| Activo      | 120673     | 2.64        |
-| Recuperado  | 4317436    | 94.57       |-->
-
+Retrieving the number of cases by status, calculating proportion of total cases:  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_status_with_proportion.PNG "Cases by status") 
 
 ```python
@@ -160,7 +147,7 @@ print('General Fatality rate =', round(gen_fatality,3), '%')
 > 94.57% of infected people have recovered from Covid-19.
 
 ### Cases, deaths and fatality rate by gender:  
-Retrieving the number of cases and deaths by gendedr, calculating fatality rate and settina a dataframe with the results:  
+Retrieving the number of cases and deaths by gender, calculating fatality rate and setting a dataframe with the results:  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatalityrate_by_gender.png "Cases_deaths_fatality_by_gender")  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatality_by_gender_piechart.png "Deaths_by_gender_piechart")
 > The proportion of infected people is similar in both sexes, however, the fatality rate is much higher in men (3.23%) than in women (1.85%). This means men are 42% more likely to die than women if they contract the virus.  
@@ -218,3 +205,11 @@ for i in range(0,6):
 
 
 <!---Para ocultar-->
+
+<!---
+| estado      | cantidad   | porcentaje  |
+| ----------- |:----------:| -----------:|
+| N/A         | 12926      | 0.28        |
+| Fallecido   | 114337     | 2.50        |
+| Activo      | 120673     | 2.64        |
+| Recuperado  | 4317436    | 94.57       |-->
