@@ -114,7 +114,7 @@ Exploratory analisys was carried out by making SQL queries to the database (via 
 - The total population estimate of Colombia (50.339.000 habitants) is based on the last revision of the United Nations World Population Prospects. 
 - Age group: group made up of people of the same or similar age. Cases were classified into 10 age groups.
 
-#### Total Cases and Proportion of the population infected:
+### Total Cases and Proportion of the population infected:
 ```python
 r0 = %sql SELECT COUNT(*) FROM Casos
 total_cases = r0[0][0]
@@ -127,8 +127,7 @@ print('Proportion of the population infected =',prop_pop_inf, '%')
 > Total cases reported to date = 4.565.372  
 > Proportion of the population infected = 9.07 %  
 
-## Distribution analysis: 
-#### Cases by status:  
+### Cases by status:  
 ```python
 r1 = %sql SELECT estado, COUNT(estado) AS cantidad FROM Casos GROUP BY estado ORDER BY cantidad
 df_r1 = r1.DataFrame()
@@ -160,13 +159,18 @@ print('General Fatality rate =', round(gen_fatality,3), '%')
 > General Fatality rate = 2.50%  
 > 94.57% of infected people have recovered from Covid-19.
 
-#### Cases, deaths and fatality rate by gender:  
+### Cases, deaths and fatality rate by gender:  
 Retrieving the number of cases and deaths by gendedr, calculating fatality rate and settina a dataframe with the results:  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatalityrate_by_gender.png "Cases_deaths_fatality_by_gender")  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatality_by_gender_piechart.png "Deaths_by_gender_piechart")
 > The proportion of infected people is similar in both sexes, however, the fatality rate is much higher in men (3.23%) than in women (1.85%). This means men are 42% more likely to die than women if they contract the virus.  
 > 38.67% of the total deaths have been women and 61.33% have been men.  
 > According to the pie chart almost two-thirds (2/3) of the deceased are men.   
+
+
+### Categorization of Cases by Age Group
+
+
 
 ![alt text]( "")
 
