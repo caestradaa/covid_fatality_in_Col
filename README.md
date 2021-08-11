@@ -143,9 +143,10 @@ df_r1
 | Recuperado  | 4317436    | 94.57       |-->
 
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_status_with_proportion.PNG "Cases by status")  
-> Total deaths = 114337
+> Total deaths = 114.337
 > General Mortality rate = 227.13 per 100,000 inhabitants  
-> General Fatality rate = 2.504 %
+> General Fatality rate = 2.50%.
+> 94.57% of infected people have recovered from Covid-19
 
 #### Cases, deaths and fatality rate by gender:  
 Retrieving the number of cases and deaths by gendedr, calculating fatality rate and settina a dataframe with the results:
