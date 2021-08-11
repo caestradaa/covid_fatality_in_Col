@@ -111,6 +111,7 @@ Exploratory analisys was carried out by making SQL queries to the database (via 
 - The total population estimate of Colombia (50.339.000 habitants) is based on the last revision of the United Nations World Population Prospects.
 - Age group: group made up of people of the same or similar age. Cases were classified into 10 age groups.
 
+
 ### Total Cases and Proportion of the population infected:
 ```python
 r0 = %sql SELECT COUNT(*) FROM Casos
@@ -123,6 +124,7 @@ print('Proportion of the population infected =',prop_pop_inf, '%')
 ```
 - Total cases reported to date = 4.565.372  
 - Proportion of the population infected = 9.07 %  
+
 
 ### Cases by status:  
 Retrieving the number of cases by status and calculating the proportion from total cases:  
@@ -144,6 +146,7 @@ print('General Fatality rate =', round(gen_fatality,3), '%')
 - General Fatality rate = 2.50%  
 - 94.57% of infected people have recovered from Covid-19.
 
+
 ### Cases, deaths and fatality rate by gender:  
 Retrieving the number of cases and deaths by gender, calculating fatality rate and setting a dataframe with the results:  
 
@@ -155,7 +158,7 @@ Retrieving the number of cases and deaths by gender, calculating fatality rate a
 
 
 ### Categorization of Cases by Age Group:
-In order to calculate the fatality rate of each group we created a VIEW called `Casos_con_grupo_etario` from the main dataset `Casos`.
+In order to calculate the fatality rate of each group we created a SQL View called `Casos_con_grupo_etario` from the main dataset `Casos`.
 ```python
 %%sql
 CREATE VIEW Casos_con_grupo_etario AS
@@ -179,26 +182,33 @@ END AS grupo_etario
 FROM Casos;
 ```
 
-Next, we group cases and deaths by age group and gender in different queries using **CTEs**. Then we **JOIN** the results into a single table and then create a new VIEW from it `agrupacion_por_grupoetario_y_sexo`, getting the number of **Cases and Deaths by Age Group and Gender** in the same table. Then, we calculate fatality rate for each age group and gender and retrive **segment of the population with the highest fatality rate**:
+Once the main view is created `Casos_con_grupo_etario`, we make a series of groupings by age group, gender and month using CTEs and Joins. We obtain several result sets that we save in different SQL Views:
+- `agrupacion_por_grupoetario_y_sexo`: number of cases and deaths by **age group** and **gender**.
+- `letalidad_por_grupoetario`: number of cases, deaths and fatality rate just by **age group**.
+- `agrupacion_por_mes_y_grupoetario`: number of cases and deaths by **month** and **age group**.
+- `letalidad_por_mes`(dataframe): cases, deaths and general fatality rate by **month**
 
-```python
-%%sql
-WITH CTE1_letalidad (grupo_etario, sexo, fallecidos, casos, letalidad) AS (
-    SELECT *, ROUND((CONVERT(FLOAT, fallecidos)/CONVERT(FLOAT, casos))*100,2) AS letalidad
-    FROM agrupacion_por_grupoetario_y_sexo
-    )
-SELECT * FROM CTE1_letalidad WHERE letalidad = (SELECT MAX(letalidad) FROM CTE1_letalidad);
-```  
+From the view `agrupacion_por_grupoetario_y_sexo`, we calculate fatality rate for each age group and gender and retrive the segment of the population with the highest fatality rate:  
+
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Segment_highes_%20fatality_rate.png "segment with the highest fatality rate")
 
+Calculating **fatality rate** by age group:
+```python
+%%sql
+--CREATE VIEW letalidad_por_grupoetario AS
+SELECT grupo_etario, SUM(fallecidos) AS fallecidos, SUM(casos) AS casos, ROUND((CONVERT(FLOAT, SUM(fallecidos))/CONVERT(FLOAT,SUM(casos)))*100,2) AS letalidad
+FROM agrupacion_por_grupoetario_y_sexo
+GROUP BY grupo_etario;
+```  
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_age_group.png "Fatality_rate_by_age_group")  
+- The age groups with the highest fatality rate are the more advance ones: `60 - 69`, `70 - 79` and `80 o más` with 7.2%, 15.4% and 26.7% respectively.  
+- The fatality rate of these groups is quite high compared with the general rate that is 2.50%.
+- It is shown that we cannot use the general fatality rate as a comparable measure for all age groups.
 
 
+### Effect of vaccines on Fatality Rate
+Here we study how the fatality rate of each age group has evolved from month to month since the start of the pandemic. We will focus primarily on comparing the behavior of this measure before and after the start of vaccination in February 2021, looking for any positive effect on each age group.
 
-
-
-
-
-## Correlation analysis
 
 ![alt text]( "")
 ![alt text]( "")
