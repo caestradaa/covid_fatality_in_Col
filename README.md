@@ -211,7 +211,7 @@ GROUP BY grupo_etario;
 ### Effect of vaccines on Fatality Rate
 Here we study how the fatality rate of each age group has evolved from month to month. We focused on comparing the behavior of this measure before and after the start of vaccination in February 2021, looking for any positive effect on each age group.
 
-First we group cases and deaths by *month* and *age group* using CTEs statements and then joining the results in one table.
+First we group cases and deaths by **month** and **age group** using CTEs statements and then joining the results in one table.
 ```python
 %%sql
 --CREATE VIEW agrupacion_por_mes_y_grupoetario AS
