@@ -250,7 +250,7 @@ ORDER BY año, mes, grupo_etario
 ```python
 r5 = %sql SELECT * FROM letalidad_por_grupoetario_por_mes ORDER BY año, mes, grupo_etario
 df_5 = r5.DataFrame()
-df_5
+df_5.iloc[:,2:]
 ```
 
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_age_group_and_month.png "Fatality_rate_by_age_group_and_month_df")
