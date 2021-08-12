@@ -186,7 +186,8 @@ Once the main view is created `Casos_con_grupo_etario`, we make a series of grou
 - `agrupacion_por_grupoetario_y_sexo`: number of cases and deaths by **age group** and **gender**.
 - `letalidad_por_grupoetario`: number of cases, deaths and fatality rate just by **age group**.
 - `agrupacion_por_mes_y_grupoetario`: number of cases and deaths by **month** and **age group**.
-- `letalidad_por_mes`(dataframe): cases, deaths and general fatality rate by **month**
+- `letalidad_por_mes`(dataframe): number of cases, deaths and general fatality rate by **month**.
+- `letalidad_por_grupoetario_por_mes`: number of cases, deaths and fatality Rate by **month** and **age group**.
 
 From the view `agrupacion_por_grupoetario_y_sexo`, we calculate fatality rate for each age group and gender and retrive the segment of the population with the highest fatality rate:  
 
@@ -209,8 +210,9 @@ GROUP BY grupo_etario;
 
 
 ### Effect of vaccines on Fatality Rate
-Here we study how the fatality rate of each age group has evolved from month to month since the start of the pandemic. We will focus primarily on comparing the behavior of this measure before and after the start of vaccination in February 2021, looking for any positive effect on each age group.
+Here we study how the fatality rate of each age group has evolved from month to month. We focused on comparing the behavior of this measure before and after the start of vaccination in February 2021, looking for any positive effect on each age group.
 
+First we group cases and deaths by *month* and *age group* using CTEs statements and then joining the results in one table.
 ```python
 %%sql
 --CREATE VIEW agrupacion_por_mes_y_grupoetario AS
@@ -229,23 +231,30 @@ SELECT c.año, c.mes, c.grupo_etario, fallecidos, casos
 FROM CTE3_casos c
 LEFT JOIN CTE4_muertes m ON c.año = m.año AND c.mes = m.mes AND c.grupo_etario = m.grupo_etario
 ```
-Calculating general Fatality Rate by **Month**:
+Then, calculating fatality rate by **month**, capturing the result table in a dataframe and ploting we get:  
 
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_month.png "")
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_month_linechart.png "Fatality rate by month linechart")  
+- During the first months the general fatality rate remains is very high. It begins to stabilize at values between 2% and 3% from month 08-2020.
+- After 3 months of vaccination, from month 05-2021, a downward trend in fatality is observed reaching 1.95% in 07-2021. It is the lowest value in the entire pandemic.
+
+
+Finally, calculating fatality rate for **each age group** by **month**: and capturing the result table in a dataframe we get:
 ```python
-%%sql r4 <<
-SELECT CONCAT(año,'-', mes) AS año_mes, SUM(fallecidos) AS fallecidos, SUM(casos) AS casos, ROUND((CONVERT(FLOAT, SUM(fallecidos))/CONVERT(FLOAT,SUM(casos)))*100,2) AS letalidad
+%%sql
+--CREATE VIEW letalidad_por_grupoetario_por_mes AS
+SELECT año, mes, CONCAT(año,'-', mes) AS año_mes, grupo_etario, fallecidos, casos, ROUND((CONVERT(FLOAT, fallecidos)/CONVERT(FLOAT,casos))*100,2) AS letalidad
 FROM agrupacion_por_mes_y_grupoetario
-GROUP BY año, mes
-ORDER BY año, mes
+ORDER BY año, mes, grupo_etario
 ```
-
 ```python
-df_letalidad_por_mes = r4.DataFrame()
-df_letalidad_por_mes.head()
+r5 = %sql SELECT * FROM letalidad_por_grupoetario_por_mes ORDER BY año, mes, grupo_etario
+df_5 = r5.DataFrame()
+df_5
 ```
 
-![alt text]( "")
-![alt text]( "")
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_age_group_and_month.png "Fatality_rate_by_age_group_and_month_df")
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_age_group_and_month_linechart.png "Fatality_rate_by_age_group_and_month_linechart")
 
 
 
