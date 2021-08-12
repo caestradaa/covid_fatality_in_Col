@@ -201,8 +201,8 @@ FROM agrupacion_por_grupoetario_y_sexo
 GROUP BY grupo_etario;
 ```  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_age_group.png "Fatality_rate_by_age_group")
-![alt text]( "Cases_by_age_group")
-![alt text]( "Deaths_by_age_group")  
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_agegroup_barchart.png "Cases_by_age_group")
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Deaths_by_agegroup_barchart.png "Deaths_by_age_group")  
 - The age groups with the highest fatality rate are the more advance ones: `60 - 69`, `70 - 79` and `80 o más` with 7.2%, 15.4% and 26.7% respectively.  
 - The fatality rate of these groups is quite high compared with the general rate that is 2.50%.
 - It is shown that we cannot use the general fatality rate as a comparable measure for all age groups.
