@@ -267,7 +267,7 @@ df_5.iloc[:,2:]
 
 
 
-[notebook]: ()
+[notebook]:https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Notebook%20-%20Effect%20of%20Vaccines%20on%20Covid19%20fatality%20rate%20in%20Colombia.ipynb
 
 
 <!---## Specific Analysis
