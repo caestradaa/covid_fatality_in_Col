@@ -36,8 +36,9 @@ All the data required for this project was searched from multiple sources on the
 
 
 
+
 ## Data Cleaning
-Cleaning of both datasets was done with SQL in SQL Server Management Studio. All performed procedures are documented in the attached **[.SQL file](link)**. The following transformations were performed:  <!---[I'm a relative reference to a repository file](../blob/master/LICENSE)-->
+Cleaning of both datasets was done with SQL in SQL Server Management Studio. All performed procedures are documented in the attached **[.SQL file](link)**. The following transformations were performed:
 #### 1. Cases:
 - Conversion of date format "datetime" to "date" in all date type columns.
 - Replacement of record "1899-12-30 00: 00: 00.000" by null records (date records that were originally null in the csv were wrongly imported as "1899-12-30 00: 00: 00.000").
@@ -98,7 +99,7 @@ WHERE location = 'Colombia'
 ORDER BY fecha
 ```  
 
-![alt text]( "")
+<!---![alt text]( "") -->
 
 
 
@@ -184,7 +185,6 @@ Once the main view is created `Casos_con_grupo_etario`, we make a series of grou
 - `agrupacion_por_grupoetario_y_sexo`: number of cases and deaths by **age group** and **gender**.
 - `letalidad_por_grupoetario`: number of cases, deaths and fatality rate just by **age group**.
 - `agrupacion_por_mes_y_grupoetario`: number of cases and deaths by **month** and **age group**.
-- `letalidad_por_mes`(dataframe): number of cases, deaths and general fatality rate by **month**.
 - `letalidad_por_grupoetario_por_mes`: number of cases, deaths and fatality Rate by **month** and **age group**.
 
 From the view `agrupacion_por_grupoetario_y_sexo`, we calculate fatality rate for each age group and gender and retrive the segment of the population with the highest fatality rate:  
@@ -269,8 +269,8 @@ df_5.iloc[:,2:]
 
 [notebook]:https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Notebook%20-%20Effect%20of%20Vaccines%20on%20Covid19%20fatality%20rate%20in%20Colombia.ipynb
 
-<!---
-## Specific Analysis
+
+<!---## Specific Analysis
 
 ### First analysis
 
