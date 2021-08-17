@@ -5,7 +5,7 @@
 ## Overview
 - A data analysis on Covid-19 in Colombia was made in order to understand the effects that mass vaccination is having on the fatality rate, and determine if there really is a positive impact on vaccinated population.
 - Two datasets were used: Covid-19 positive cases data in Colombia extracted from the oficial repository of the National Institute of Health (4.5M rows up to July 14, 2021), and Vaccination data extracted from the official Our World in Data repository (127 rows).
-- Project tools: SQL Server for loading and cleaning data: **[SQL cleaning file](link)**. SQL and Python for exploratory analysis on a **[Jupyter notebook](link)** via %sql magic (ipython-sql).
+- Project tools: SQL Server for loading and cleaning data: **[SQL cleaning file](link)**. SQL and Python for exploratory analysis on a **[Jupyter notebook][notebook]** via %sql magic (ipython-sql).
 - It was found that during the first 3 months after the start of vaccination, there is no significant change in the fatality rate, however, from 06-2021 there is a notable decrease. In people older than 70 years fatality rate has decreased on average by 21.25%. <!---In the age group from 70 to 79 fatality rate has decreased by 25.27%.-->
 
 
@@ -104,7 +104,7 @@ ORDER BY fecha
 
 
 ## Exploratory Data Analysis (EDA)
-Exploratory analisys was carried out by making SQL queries to the database (via %sql magic) from a Jupyter notebook, as well as some calculations and visualizations with Python. This readme file presents the summary of the analysis results, **full code and details can be found in the [Jupyter notebook](link)**. Considerations:
+Exploratory analisys was carried out by making SQL queries to the database (via %sql magic) from a Jupyter notebook, as well as some calculations and visualizations with Python. This readme file presents the summary of the analysis results, **full code and details can be found in the [Jupyter notebook][notebook]**. Considerations:
 - Fatality rate: proportion of deaths compared to the total number of people diagnosed.
 - Mortality rate: proportion of deaths per unit of population (100,000 generally used).
 - The total population estimate of Colombia (50.339.000 habitants) is based on the last revision of the United Nations World Population Prospects.
@@ -265,6 +265,9 @@ df_5.iloc[:,2:]
 - 7. Fatality rate in the group of "80 or more" decreased from an average of 26.21% in the last 10 months to 21.69% in 07-2021. Fatality rate in the group of "70 - 79" decreased from an average of 15.51% in the last 10 months to 11.59% in 07-2021.
 - 8. In other words, fatality rate has decreased by 17.24% for the group of "80 or more" and by 25.27% for the group of "70 - 79" after 6 months from the start of vaccination.
 
+
+
+[notebook]:https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Notebook%20-%20Effect%20of%20Vaccines%20on%20Covid19%20fatality%20rate%20in%20Colombia.ipynb
 
 <!---
 ## Specific Analysis
