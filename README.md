@@ -256,14 +256,14 @@ df_5.iloc[:,2:]
 
 
 ## Conclusions
-- 1. The fatality rate tends to be higher in older age groups. This behavior is maintained month by month throughout the pandemic, confirming that older people have been the hardest hit by the virus. Therefore, it is correct to conclude that the older a person is, the greater risk of dying if they contract the disease.
-- 2. According to the graphs, the people least affected by the pandemic are between 0 and 49 years old. In these age groups, fatality averages below 2%.
-- 3. For the more advanced age groups, from 50 years old onwards, the changes in fatality rate are much more sensitive to the number of cases in each month.
-- 4. During the first 3 months after the start of vaccination (02-2021), there does not seem to be a significant change that indicates a decrease in fatality rate, on the contrary, there are notable peaks and valleys in its behavior, given the sudden increase and decrease in the number of infections during those same months.
-- 5. A decrease in the fatality rate is notorious only from 05-2021, which is the 4th month after the start of vaccination. Naturally, this change is noticeable in the more advanced age groups since they were a priority in the country's vaccination scheme.
-- 6. The downward trend in the fatality rate is very pronounced in the "70 -79" and "80 or more" groups. 
-- 7. Fatality rate in the group of "80 or more" decreased from an average of 26.21% in the last 10 months to 21.69% in 07-2021. Fatality rate in the group of "70 - 79" decreased from an average of 15.51% in the last 10 months to 11.59% in 07-2021.
-- 8. In other words, fatality rate has decreased by 17.24% for the group of "80 or more" and by 25.27% for the group of "70 - 79" after 6 months from the start of vaccination.
+- Fatality rate tends to be higher in older age groups. This behavior is maintained month by month throughout the pandemic, confirming that older people have been the hardest hit by the virus. Therefore, it is correct to conclude that the older a person is, the greater risk of dying if they contract the disease.
+- According to the graphs, the people least affected by the pandemic are between 0 and 49 years old. In these age groups, fatality averages below 2%.
+- For the more advanced age groups, from 50 years old onwards, the changes in fatality rate are much more sensitive to the number of cases in each month.
+- During the first 3 months after the start of vaccination (02-2021), there does not seem to be a significant change that indicates a decrease in fatality rate, on the contrary, there are notable peaks and valleys in its behavior, given the sudden increase and decrease in the number of infections during those same months.
+- A decrease in the fatality rate is notorious only from 05-2021, which is the 4th month after the start of vaccination. Naturally, this change is noticeable in the more advanced age groups since they were a priority in the country's vaccination scheme.
+- The downward trend in the fatality rate is very pronounced in the "70 -79" and "80 or more" groups. 
+- Fatality rate in the group of "80 or more" decreased from an average of 26.21% in the last 10 months to 21.69% in 07-2021. Fatality rate in the group of "70 - 79" decreased from an average of 15.51% in the last 10 months to 11.59% in 07-2021.
+- In other words, fatality rate has decreased by 17.24% for the group of "80 or more" and by 25.27% for the group of "70 - 79" after 6 months from the start of vaccination.
 
 
 
