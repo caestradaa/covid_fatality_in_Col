@@ -6,7 +6,7 @@
 - A data analysis on Covid-19 in Colombia was made in order to understand the effects that mass vaccination is having on the fatality rate, and determine if there really is a positive impact on vaccinated population.
 - Two datasets were used: Covid-19 positive cases data in Colombia extracted from the oficial repository of the National Institute of Health (4.5M rows up to July 14, 2021), and Vaccination data extracted from the official Our World in Data repository (127 rows).
 - Project tools: SQL Server for loading and cleaning data: **[SQL file](link)**. SQL and Python for exploratory analysis on a **[Jupyter notebook][notebook]** via %sql magic.
-- It was found that during the first 3 months after the start of vaccination, there is no significant change in the fatality rate, however, from 06-2021 there is a notable decrease. In people older than 70 years fatality rate has decreased on average by 21.25%. <!---In the age group from 70 to 79 fatality rate has decreased by 25.27%.-->
+- It was found that during the first 3 months after the start of vaccination, there is no significant change in the fatality rate, however, from 06-2021 there is a notable decrease. In people over 70 years old, fatality rate has decreased on average by 21.25%. <!---In the age group from 70 to 79 fatality rate has decreased by 25.27%.-->
 
 
 
@@ -262,7 +262,7 @@ df_5.iloc[:,2:]
 - During the first 3 months after the start of vaccination (02-2021), there does not seem to be a significant change that indicates a decrease in fatality rate, on the contrary, there are notable peaks and valleys in its behavior, given the sudden increase and decrease in the number of infections during those same months.
 - A decrease in the fatality rate is notorious only from 05-2021, which is the 4th month after the start of vaccination. Naturally, this change is noticeable in the more advanced age groups since they were a priority in the country's vaccination scheme.
 - The downward trend in the fatality rate is very pronounced in the "70 -79" and "80 or more" groups. 
-- Fatality rate in the group of "80 or more" decreased from an average of 26.21% in the last 10 months to 21.69% in 07-2021. Fatality rate in the group of "70 - 79" decreased from an average of 15.51% in the last 10 months to 11.59% in 07-2021.
+- Fatality rate in the group of "80 or more" has decreased from an average of 26.21% in the last 10 months, to 21.69% in 07-2021. Fatality rate in the group of "70 - 79" has decreased from an average of 15.51% to 11.59% in 07-2021.
 - In other words, fatality rate has decreased by 17.24% for the group of "80 or more" and by 25.27% for the group of "70 - 79" after 6 months from the start of vaccination.
 
 
