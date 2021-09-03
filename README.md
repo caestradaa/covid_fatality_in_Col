@@ -5,7 +5,7 @@
 ## Overview
 - A data analysis on Covid-19 in Colombia was made in order to understand the effects that mass vaccination is having on the fatality rate, and determine if there really is a positive impact on vaccinated population.
 - Two datasets were used: Covid-19 positive cases data in Colombia extracted from the oficial repository of the National Institute of Health (4.5M rows up to July 14, 2021), and Vaccination data extracted from the official Our World in Data repository (127 rows).
-- Project tools: SQL Server for loading and cleaning data: **[SQL file](link)**. SQL and Python for exploratory analysis on a **[Jupyter notebook][notebook]** via %sql magic.
+- Project tools: SQL Server for loading and cleaning data: **[SQL file][sqlfile]**. SQL and Python for exploratory analysis on a **[Jupyter notebook][notebook]** via %sql magic.
 - It was found that during the first 3 months after the start of vaccination, there is no significant change in the fatality rate, however, from 06-2021 there is a notable decrease. In people over 70 years old, fatality rate has decreased on average by 21.25%. <!---In the age group from 70 to 79 fatality rate has decreased by 25.27%.-->
 
 
@@ -38,7 +38,7 @@ All the data required for this project was searched from multiple sources on the
 
 
 ## Data Cleaning
-Cleaning of both datasets was done with SQL in SQL Server Management Studio. All performed procedures are documented in the attached **[.SQL file](link)**. The following transformations were performed:
+Cleaning of both datasets was done with SQL in SQL Server Management Studio. All performed procedures are documented in the attached **[.SQL file][sqlfile]**. The following transformations were performed:
 #### 1. Cases:
 - Conversion of date format "datetime" to "date" in all date type columns.
 - Replacement of record "1899-12-30 00: 00: 00.000" by null records (date records that were originally null in the csv were wrongly imported as "1899-12-30 00: 00: 00.000").
@@ -268,7 +268,7 @@ df_5.iloc[:,2:]
 
 
 [notebook]:https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Notebook%20-%20Effect%20of%20Vaccines%20on%20Covid19%20fatality%20rate%20in%20Colombia.ipynb
-
+[sqlfile]:https://github.com/caestradaa/covid_fatality_in_Col/blob/main/SQLQueries.sql
 
 <!---## Specific Analysis
 
