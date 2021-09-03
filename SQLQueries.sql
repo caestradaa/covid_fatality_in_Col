@@ -237,9 +237,9 @@ SELECT * FROM Vaccinations WHERE location = 'Colombia'
 ---------------------------------------------------------------------------------------
 --EXPLORATORY ANALYSIS AND TABLE LAYOUT FOR VISUALIZATIONS
 
---0.agrupación de casos por estado: activos, fallecidos, recuperados, fallecidos no covid.
+--0.Agrupación de casos por estado: activos, fallecidos, recuperados, fallecidos no covid.
 --0.1.Exploración sobre la vacunación
---1.Categorización y Creación de la view de la tabla Casos agregando la categoria grupo_etario (CASE y CREATE VIEW)
+--1.0.Categorización y Creación de la view de la tabla Casos agregando la categoria grupo_etario (CASE y CREATE VIEW)
 
 --3.1.agrupación de fallecimientos por grupo etario y sexo (GROUP BY)
 --3.2.agrupación de casos por grupo etario y sexo (GROUP BY)
@@ -255,9 +255,9 @@ SELECT * FROM Vaccinations WHERE location = 'Colombia'
 --7.1.Tabla de calculo de letalidad de cada grupo etario mes a mes (HACER ViEW)
 --7.2.Creando la view especial de letalidad por grupo etario mes a mes
 --7.3.Filtrando por un solo grupo etario:
-
---5.Calculando letalidad por grupo etario y sexo
---5.agrupación por mes y año
+--8.1 Fallecidos mes a mes
+--8.2 Casos mes a mes
+--9.0 Tabla de fallecidos  dia a día
 
 --0.Agrupación de casos por estado: activos, fallecidos, recuperados, fallecidos no covid:
 SELECT estado, COUNT(estado) AS cantidad
@@ -281,7 +281,7 @@ SELECT MAX(people_fully_vaccinated) as people_fully_vaccinated FROM Vaccinations
 
 
 
---1.Categorización y Creación de la view de la tabla Casos agregando la categoria grupo_etario
+--1.0.Categorización y Creación de la view de la tabla Casos agregando la categoria grupo_etario
 --DROP VIEW IF EXISTS Casos_con_grupo_etario
 --CREATE VIEW Casos_con_grupo_etario AS
 SELECT fecha_reporte_web, id_caso, edad, unidad_medida_edad, sexo, estado, fecha_muerte,
