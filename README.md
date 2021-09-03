@@ -156,6 +156,9 @@ Retrieving the number of cases and deaths by gender, calculating fatality rate a
 - According to the pie chart almost two-thirds (2/3) of the deceased are men.   
 
 
+
+
+## Explanatory Analysis
 ### Categorization of Cases by Age Group:
 In order to calculate the fatality rate of each group we created a SQL View called `Casos_con_grupo_etario` from the main dataset `Casos`.
 ```python
