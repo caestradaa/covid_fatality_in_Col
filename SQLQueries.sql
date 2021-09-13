@@ -8,12 +8,14 @@ SELECT TOP 10 fecha_reporte_web, CONVERT(DATE, fecha_reporte_web), fecha_muerte,
 FROM Casos
 ORDER BY id_caso
 
---Convert "datetime" to "date".
+
+--Convert "datetime" type to "date" type:
 ALTER TABLE Casos
 ALTER COLUMN fecha_reporte_web DATE;
 
 ALTER TABLE Casos
 ALTER COLUMN fecha_muerte DATE;
+
 
 --Convert the rest of columns to "datetime" type (for furutre analysis):
 ALTER TABLE Casos
@@ -100,112 +102,112 @@ ORDER BY 1
 
 --Country name correction:
 UPDATE Casos
-SET nombre_pais = 'AFGANISTAN' WHERE nombre_pais = 'AFGANISTÃN'
+SET nombre_pais = 'AFGANISTAN' WHERE nombre_pais = 'AFGANISTÃN';
 
 UPDATE Casos
-SET nombre_pais = 'ARABIA SAUDITA' WHERE nombre_pais = 'ARABIA SAUDÃ'
+SET nombre_pais = 'ARABIA SAUDITA' WHERE nombre_pais = 'ARABIA SAUDÃ';
 
 UPDATE Casos
-SET nombre_pais = 'BELGICA' WHERE codigo_iso_pais = 56
+SET nombre_pais = 'BELGICA' WHERE codigo_iso_pais = 56;
 
 UPDATE Casos
-SET codigo_iso_pais = 76 WHERE nombre_pais = 'BRASIL'
+SET codigo_iso_pais = 76 WHERE nombre_pais = 'BRASIL';
 
 UPDATE Casos
-SET nombre_pais = 'CAMERUN' WHERE codigo_iso_pais = 120
+SET nombre_pais = 'CAMERUN' WHERE codigo_iso_pais = 120;
 
 UPDATE Casos
-SET nombre_pais = 'CANADA' WHERE codigo_iso_pais = 124
+SET nombre_pais = 'CANADA' WHERE codigo_iso_pais = 124;
 
 UPDATE Casos
-SET codigo_iso_pais = 152 WHERE nombre_pais = 'CHILE'
+SET codigo_iso_pais = 152 WHERE nombre_pais = 'CHILE';
 
 UPDATE Casos
-SET codigo_iso_pais = 531 WHERE nombre_pais = 'CURAZAO'
+SET codigo_iso_pais = 531 WHERE nombre_pais = 'CURAZAO';
 
 UPDATE Casos
-SET codigo_iso_pais = 218 WHERE nombre_pais = 'ECUADOR'
+SET codigo_iso_pais = 218 WHERE nombre_pais = 'ECUADOR';
 
 UPDATE Casos
-SET nombre_pais = 'ESPAÑA' WHERE nombre_pais = 'ESPAÃ‘A'
+SET nombre_pais = 'ESPAÑA' WHERE nombre_pais = 'ESPAÃ‘A';
 
 UPDATE Casos
-SET codigo_iso_pais = 724 WHERE nombre_pais = 'ESPAÑA'
+SET codigo_iso_pais = 724 WHERE nombre_pais = 'ESPAÑA';
 
 UPDATE Casos
-SET nombre_pais = 'ESTADOS UNIDOS DE AMERICA' WHERE nombre_pais = 'ESTADOS UNIDOS DE AMÃ‰RICA'
+SET nombre_pais = 'ESTADOS UNIDOS DE AMERICA' WHERE nombre_pais = 'ESTADOS UNIDOS DE AMÃ‰RICA';
 
 UPDATE Casos
-SET codigo_iso_pais = 840 WHERE nombre_pais = 'ESTADOS UNIDOS DE AMERICA'
+SET codigo_iso_pais = 840 WHERE nombre_pais = 'ESTADOS UNIDOS DE AMERICA';
 
 UPDATE Casos
-SET nombre_pais = 'FEDERACION DE RUSIA' WHERE nombre_pais = 'FEDERACIÃ“N DE RUSIA'
+SET nombre_pais = 'FEDERACION DE RUSIA' WHERE nombre_pais = 'FEDERACIÃ“N DE RUSIA';
 
 UPDATE Casos
-SET codigo_iso_pais = 250 WHERE nombre_pais = 'FRANCIA'
+SET codigo_iso_pais = 250 WHERE nombre_pais = 'FRANCIA';
 
 UPDATE Casos
-SET nombre_pais = 'ISLAS VIRGENES DE LOS ESTADOS UNIDOS' WHERE nombre_pais = 'ISLAS VÃRGENES DE LOS ESTADOS UNIDOS'
+SET nombre_pais = 'ISLAS VIRGENES DE LOS ESTADOS UNIDOS' WHERE nombre_pais = 'ISLAS VÃRGENES DE LOS ESTADOS UNIDOS';
 
 UPDATE Casos
-SET nombre_pais = 'MEXICO' WHERE nombre_pais = 'MÃ‰XICO'
+SET nombre_pais = 'MEXICO' WHERE nombre_pais = 'MÃ‰XICO';
 
 UPDATE Casos
-SET nombre_pais = 'PAISES BAJOS' WHERE nombre_pais = 'PAÃSES BAJOS'
+SET nombre_pais = 'PAISES BAJOS' WHERE nombre_pais = 'PAÃSES BAJOS';
 
 UPDATE Casos
-SET codigo_iso_pais = 528 WHERE nombre_pais = 'PAISES BAJOS'
+SET codigo_iso_pais = 528 WHERE nombre_pais = 'PAISES BAJOS';
 
 UPDATE Casos
-SET nombre_pais = 'PANAMA' WHERE nombre_pais = 'PANAMÃ'
+SET nombre_pais = 'PANAMA' WHERE nombre_pais = 'PANAMÃ';
 
 UPDATE Casos
-SET codigo_iso_pais = 591 WHERE nombre_pais = 'PANAMA'
+SET codigo_iso_pais = 591 WHERE nombre_pais = 'PANAMA';
 
 UPDATE Casos
-SET nombre_pais = 'PERU' WHERE codigo_iso_pais IN (604,1589)
+SET nombre_pais = 'PERU' WHERE codigo_iso_pais IN (604,1589);
 
 UPDATE Casos
-SET codigo_iso_pais = 604 WHERE nombre_pais = 'PERU'
+SET codigo_iso_pais = 604 WHERE nombre_pais = 'PERU';
 
 UPDATE Casos
-SET nombre_pais = 'REINO UNIDO' WHERE codigo_iso_pais = 826
+SET nombre_pais = 'REINO UNIDO' WHERE codigo_iso_pais = 826;
 
 UPDATE Casos
-SET codigo_iso_pais = 380 WHERE nombre_pais = 'ITALIA'
+SET codigo_iso_pais = 380 WHERE nombre_pais = 'ITALIA';
 
 UPDATE Casos
-SET nombre_pais = 'REPUBLICA ARABE SIRIA' WHERE codigo_iso_pais = 760
+SET nombre_pais = 'REPUBLICA ARABE SIRIA' WHERE codigo_iso_pais = 760;
 
 UPDATE Casos
-SET nombre_pais = 'REPUBLICA CENTROAFRICANA' WHERE codigo_iso_pais = 140
+SET nombre_pais = 'REPUBLICA CENTROAFRICANA' WHERE codigo_iso_pais = 140;
 
 UPDATE Casos
-SET nombre_pais = 'REPUBLICA DE COREA' WHERE codigo_iso_pais = 410
+SET nombre_pais = 'REPUBLICA DE COREA' WHERE codigo_iso_pais = 410;
 
 UPDATE Casos
-SET nombre_pais = 'REPUBLICA DOMINICANA' WHERE codigo_iso_pais = 214
+SET nombre_pais = 'REPUBLICA DOMINICANA' WHERE codigo_iso_pais = 214;
 
 UPDATE Casos
-SET nombre_pais = 'SAN BARTOLOME' WHERE codigo_iso_pais = 652
+SET nombre_pais = 'SAN BARTOLOME' WHERE codigo_iso_pais = 652;
 
 UPDATE Casos
-SET nombre_pais = 'TURQUIA' WHERE nombre_pais = 'TURQUÃA'
+SET nombre_pais = 'TURQUIA' WHERE nombre_pais = 'TURQUÃA';
 
 UPDATE Casos
-SET nombre_pais = 'VENEZUELA' WHERE nombre_pais = 'VENEUELA'
+SET nombre_pais = 'VENEZUELA' WHERE nombre_pais = 'VENEUELA';
 
 
 
 -------------------------------------------------------------------------------------
 --RENAMING COLUMNS "estado" AND "recuperado"
 
---Renombrando "estado" por "severidad".
-EXEC SP_RENAME 'Casos.estado', 'severidad', 'COLUMN';
+--Renaming "estado" by "severidad":
+EXEC SP_RENAME 'Casos.estado', 'severidad', 'COLUMN'
 
 
---Renombrando "recuperado" por "estado".
-EXEC SP_RENAME 'Casos.recuperado', 'estado', 'COLUMN';
+--Renombrando "recuperado" by "estado":
+EXEC SP_RENAME 'Casos.recuperado', 'estado', 'COLUMN'
 
 
 
@@ -213,10 +215,10 @@ EXEC SP_RENAME 'Casos.recuperado', 'estado', 'COLUMN';
 -------------------------------------------------------------------------------------
 --RETRIEVING CLEANED DATA SET
 
---Traemos solo las columnas necesarias para el análisis.
+--Reatriving only the columns necessary for the analysis:
 SELECT TOP 5 fecha_reporte_web, id_caso, edad, unidad_medida_edad, sexo, estado, fecha_muerte
 FROM Casos
-ORDER BY fecha_reporte_web
+ORDER BY fecha_reporte_web;
 
 
 
@@ -226,43 +228,48 @@ ORDER BY fecha_reporte_web
 
 SELECT TOP 10 * FROM Vaccinations
 
---Convertimos de tipo "datetime" a "date".
+--Convert "datetime" type to "date" type.
 ALTER TABLE Vaccinations
 ALTER COLUMN [date] DATE;
 
 
---Retrieving Vaccination Data concerning Colombia
+--Retrieving Vaccination data concerning Colombia:
 SELECT * FROM Vaccinations WHERE location = 'Colombia'
 
 
 
 
 ---------------------------------------------------------------------------------------
---EXPLORATORY ANALYSIS AND TABLE LAYOUT FOR VISUALIZATIONS
+--EXPLORATORY AND EXPLANATORY ANALYSIS - TABLE LAYOUT FOR VISUALIZATIONS
 
---0.Agrupación de casos por estado: activos, fallecidos, recuperados, fallecidos no covid.
---0.1.Exploración sobre la vacunación
---1.0.Categorización y Creación de la view de la tabla Casos agregando la categoria grupo_etario (CASE y CREATE VIEW)
+--0.Grouping cases by state: active, deceased, recovered, non-covid deceased.
+--0.1.Vaccination EDA.
+--0.2 Vaccination start date.
+--0.3 Doses applied to date.
+--0.4 People with the complete scheme to date.
+--1.0.Categorization of cases by age group (View) (CASE y CREATE VIEW)
+--2.1.Grouping deaths by age group and sex (GROUP BY)
+--2.2.Grouping cases by age group and sex (GROUP BY)
+--3.Cases and deaths by age group and sex - Joining both aggrupations (View) (CTE y JOIN)
+--4.Calculating fatality rate by age group and sex.
+--4.1.What is the segment of the population (age group and sex) with the highest latency rate?.
+--5.Calculating fatality rate just by age group (View):
+--5.1.What is the age group with the HIGHEST fatality rate? (SUB-QUERIES)
+--5.2.What is the age group with the LOWEST fatality rate? (SUB-QUERIES)
+--6.1.Cases by age group and month:
+--6.2.Deaths by age group and month:
+--6.3.Grouping Cases and Deaths by age group and month (View)
+--6.4. Grouping by month: Agrupando por mes para sacar la letalidad general mes a mes
 
---3.1.agrupación de fallecimientos por grupo etario y sexo (GROUP BY)
---3.2.agrupación de casos por grupo etario y sexo (GROUP BY)
---4.1.unión de las dos agrupaciones por grupo etario y sexo (CTE y JOIN)
---4.2.creación de la view de Casos y Muertes por Grupo Etario y Sexo
---5.1.Calculando letalidad por grupo etario y sexo:
---5.2.Calculando letalidad solo por grupo etario (HACER VISUALIZACIÓN Y VIEW)
---5.3.Creación de la VIEW de Letalidad por Grupo Etario
---6.1.Tabla de casos por grupo etario mes a mes
---6.2.Tabla de fallecidos por grupo etario mes a mes
---6.3.Creando la VIEW de la agrupacion de los casos y fallecimientos mes a mes
---7.0. Agrupando por mes para sacar la letalidad general mes a mes:
 --7.1.Tabla de calculo de letalidad de cada grupo etario mes a mes (HACER ViEW)
 --7.2.Creando la view especial de letalidad por grupo etario mes a mes
 --7.3.Filtrando por un solo grupo etario:
+
 --8.1 Fallecidos mes a mes
 --8.2 Casos mes a mes
 --9.0 Tabla de fallecidos  dia a día
 
---0.Agrupación de casos por estado: activos, fallecidos, recuperados, fallecidos no covid:
+--0.Grouping cases by state: "activos", "fallecidos", "recuperados", "fallecidos no covid"  (active, deceased, recovered, non-covid deceased):
 SELECT estado, COUNT(estado) AS cantidad
 FROM Casos
 GROUP BY estado
@@ -270,21 +277,21 @@ ORDER BY cantidad
 
 
 
---0.1 Exporación sobre la vacunación
+--0.1 Vaccination EDA:
 SELECT COUNT(*) FROM Vaccinations WHERE location = 'Colombia'
 
---0.2 Cuando empezó la vacunación
+--0.2 Vaccination start date:
 SELECT MIN([date]) as vac_start_date FROM Vaccinations WHERE location = 'Colombia'
 
---0.3 Cuantas dosis se han administrado hasta la fecha
+--0.3 Doses applied to date:
 SELECT MAX(total_vaccinations) as total_vaccinations FROM Vaccinations WHERE location = 'Colombia'
 
---0.4 Cuantas personas tienen el esquema completo hasta la fecha
+--0.4 People with the complete scheme to date:
 SELECT MAX(people_fully_vaccinated) as people_fully_vaccinated FROM Vaccinations WHERE location = 'Colombia'
 
 
 
---1.0.Categorización y Creación de la view de la tabla Casos agregando la categoria grupo_etario
+--1.0.Categorization of cases by age group (View):
 --DROP VIEW IF EXISTS Casos_con_grupo_etario
 --CREATE VIEW Casos_con_grupo_etario AS
 SELECT fecha_reporte_web, id_caso, edad, unidad_medida_edad, sexo, estado, fecha_muerte,
@@ -306,18 +313,18 @@ CASE
 END AS grupo_etario
 FROM Casos;
 
---Chequeando la view
+--Cheking the View
 SELECT TOP 100 * FROM Casos_con_grupo_etario ORDER BY fecha_reporte_web
 
 
---3.1.agrupación de fallecimientos por grupo etario y sexo (GROUP BY)
+--2.1.Grouping deaths by age group and sex (GROUP BY):
 SELECT grupo_etario, sexo, COUNT(grupo_etario) AS fallecidos
 FROM Casos_con_grupo_etario
 GROUP BY grupo_etario, sexo, estado
 HAVING estado = 'Fallecido'
 ORDER BY grupo_etario
 
---3.2.agrupación de casos por grupo etario y sexo (GROUP BY)
+--2.2.Grouping cases by age group and sex (GROUP BY):
 SELECT grupo_etario, sexo, COUNT(grupo_etario) AS casos
 FROM Casos_con_grupo_etario
 GROUP BY grupo_etario, sexo
@@ -325,25 +332,7 @@ ORDER BY grupo_etario
 
 
 
---4.1.unión de las dos agrupaciones DE casos y muertes por grupo etario y sexo (CTE y JOIN)
-WITH CTE1_muertes (grupo_etario, sexo, fallecidos) AS (
-        SELECT grupo_etario, sexo, COUNT(grupo_etario) AS fallecidos
-        FROM Casos_con_grupo_etario
-        GROUP BY grupo_etario, sexo, estado
-        HAVING estado = 'Fallecido'
-        ),
-    CTE2_casos (grupo_etario, sexo, casos) AS (
-        SELECT grupo_etario, sexo, COUNT(grupo_etario) AS casos
-        FROM Casos_con_grupo_etario
-        GROUP BY grupo_etario, sexo
-        )
-SELECT m.grupo_etario, m.sexo, fallecidos, casos
-FROM CTE1_muertes m
-JOIN CTE2_casos c ON m.grupo_etario = c.grupo_etario AND m.sexo = c.sexo
-ORDER BY m.grupo_etario
-
-
---4.2.creación de la view de Casos y Muertes por Grupo Etario y Sexo
+--3.Cases and deaths by age group and sex - Joining both aggrupations (View) (CTE y JOIN)
 --DROP VIEW IF EXISTS agrupacion_por_grupoetario_y_sexo
 CREATE VIEW agrupacion_por_grupoetario_y_sexo AS
 WITH CTE1_muertes (grupo_etario, sexo, fallecidos) AS (
@@ -360,19 +349,19 @@ WITH CTE1_muertes (grupo_etario, sexo, fallecidos) AS (
 SELECT m.grupo_etario, m.sexo, fallecidos, casos
 FROM CTE1_muertes m
 JOIN CTE2_casos c ON m.grupo_etario = c.grupo_etario AND m.sexo = c.sexo
---ORDER BY m.grupo_etario
 
---Chequeando la view
+--Cheking View:
 SELECT * FROM agrupacion_por_grupoetario_y_sexo ORDER BY grupo_etario
 
 
 
---5.1.Calculando letalidad por grupo etario y sexo: Se observa que dentro de cada grupo etario el género con mayor tasa de latilidad es el Masculino, teniendo un mayor riesgo de fallecimiento si contraen la enfermedad.
+--4.Calculating lethality by age group and sex:
 SELECT *, ROUND((CONVERT(FLOAT, fallecidos)/CONVERT(FLOAT, casos))*100,2) AS letalidad
 FROM agrupacion_por_grupoetario_y_sexo
 ORDER BY grupo_etario;
 
-      --¿Cual es es el segmento de la población (grupo etario y sexo) con una mayor tasa de latalidad?
+
+      --4.1.What is the segment of the population (age group and sex) with the highest latency rate?:
       WITH CTE1_letalidad (grupo_etario, sexo, fallecidos, casos, letalidad) AS (
         SELECT *, ROUND((CONVERT(FLOAT, fallecidos)/CONVERT(FLOAT, casos))*100,2) AS letalidad
         FROM agrupacion_por_grupoetario_y_sexo
@@ -381,36 +370,32 @@ ORDER BY grupo_etario;
       FROM CTE1_letalidad
       WHERE letalidad = (SELECT MAX(letalidad) FROM CTE1_letalidad)
 
---5.2.Calculando letalidad solo por grupo etario (HACER VISUALIZACIÓN Y VIEW)
-SELECT grupo_etario, SUM(fallecidos) AS fallecidos, SUM(casos) AS casos, ROUND((CONVERT(FLOAT, SUM(fallecidos))/CONVERT(FLOAT,SUM(casos)))*100,2) AS letalidad
-FROM agrupacion_por_grupoetario_y_sexo
-GROUP BY grupo_etario
-ORDER BY grupo_etario
 
---5.3.Creación de la VIEW de Letalidad por Grupo Etario
-CREATE VIEW letalidad_por_grupoetario AS
+
+--5.Calculating fatality rate just by age group (View):
+--CREATE VIEW letalidad_por_grupoetario AS
 SELECT grupo_etario, SUM(fallecidos) AS fallecidos, SUM(casos) AS casos, ROUND((CONVERT(FLOAT, SUM(fallecidos))/CONVERT(FLOAT,SUM(casos)))*100,2) AS letalidad
 FROM agrupacion_por_grupoetario_y_sexo
 GROUP BY grupo_etario;
 
-      --¿Cual es el grupo etario con una MAYOR tasa de latalidad?
+      --5.1.What is the age group with the HIGHEST fatality rate? (SUB-QUERIES)
       SELECT * FROM letalidad_por_grupoetario
       WHERE letalidad = (SELECT MAX(letalidad) FROM letalidad_por_grupoetario);
 
-      --¿Cual es el grupo etario con una MENOR tasa de latalidad?
+      --5.2.What is the age group with the LOWEST fatality rate? (SUB-QUERIES)
       SELECT * FROM letalidad_por_grupoetario
       WHERE letalidad = (SELECT MIN(letalidad) FROM letalidad_por_grupoetario);
 
 
 
---6.1.Tabla de casos por grupo etario mes a mes
+--6.1.Cases by age group and month:
 SELECT YEAR(fecha_reporte_web) AS año, MONTH(fecha_reporte_web) AS mes, CONCAT(YEAR(fecha_reporte_web),'-', MONTH(fecha_reporte_web)) AS año_mes, grupo_etario, COUNT(fecha_reporte_web) AS casos
 FROM Casos_con_grupo_etario
 GROUP BY YEAR(fecha_reporte_web), MONTH(fecha_reporte_web), grupo_etario
 ORDER BY YEAR(fecha_reporte_web), MONTH(fecha_reporte_web), grupo_etario
 
 
---6.2.Tabla de fallecidos por grupo etario mes a mes
+--6.2.Deaths by age group and month:
 SELECT CONCAT(YEAR(fecha_muerte),'-', MONTH(fecha_muerte)) AS año_mes, grupo_etario, COUNT(fecha_muerte) AS fallecidos
 FROM Casos_con_grupo_etario
 GROUP BY YEAR(fecha_muerte), MONTH(fecha_muerte), grupo_etario, estado
@@ -418,7 +403,7 @@ HAVING estado = 'Fallecido'
 ORDER BY YEAR(fecha_muerte), MONTH(fecha_muerte), grupo_etario
 
 
---6.3.Creando la VIEW de la agrupacion de los casos y fallecimientos mes a mes
+--6.3.Grouping Cases and Deaths by age group and month (View):
 CREATE VIEW agrupacion_por_mes_y_grupoetario AS
 WITH CTE3_casos (año, mes, grupo_etario, casos) AS (
       SELECT YEAR(fecha_reporte_web) AS año, MONTH(fecha_reporte_web) AS mes, grupo_etario, COUNT(fecha_reporte_web) AS casos
@@ -436,25 +421,25 @@ FROM CTE3_casos c
 LEFT JOIN CTE4_muertes m ON c.año = m.año AND c.mes = m.mes AND c.grupo_etario = m.grupo_etario
 --ORDER BY c.año, c.mes, c.grupo_etario;
 
+--Cheacking View:
+SELECT * FROM agrupacion_por_mes_y_grupoetario ORDER BY año, mes, grupo_etario
 
---7.0. Agrupando por mes para sacar la letalidad general mes a mes:
+
+--6.4. Grouping by month:
 SELECT CONCAT(año,'-', mes) AS año_mes, SUM(fallecidos) AS fallecidos, SUM(casos) AS casos, ROUND((CONVERT(FLOAT, SUM(fallecidos))/CONVERT(FLOAT,SUM(casos)))*100,2) AS letalidad
 FROM agrupacion_por_mes_y_grupoetario
 GROUP BY año, mes
 ORDER BY año, mes
 
 
---7.1.Tabla de calculo de letalidad de cada grupo etario mes a mes (HACER ViEW)
-SELECT CONCAT(año,'-', mes) AS año_mes, grupo_etario, fallecidos, casos, ROUND((CONVERT(FLOAT, fallecidos)/CONVERT(FLOAT,casos))*100,2) AS letalidad
-FROM agrupacion_por_mes_y_grupoetario
-ORDER BY año, mes, grupo_etario
-
-
---7.2.Hacerle una view especial letalidad por grupo etario mes a mes
+--7.1.Calculating fatality rate by month and age group (View)
 CREATE VIEW letalidad_por_grupoetario_por_mes AS
 SELECT año, mes, CONCAT(año,'-', mes) AS año_mes, grupo_etario, fallecidos, casos, ROUND((CONVERT(FLOAT, fallecidos)/CONVERT(FLOAT,casos))*100,2) AS letalidad
 FROM agrupacion_por_mes_y_grupoetario
 --ORDER BY año, mes, grupo_etario
+
+--Cheacking View:
+SELECT * FROM letalidad_por_grupoetario_por_mes ORDER BY año, mes, grupo_etario
 
 
 --7.3.Filtrando por un solo grupo etario:
