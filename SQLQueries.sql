@@ -247,34 +247,31 @@ SELECT * FROM Vaccinations WHERE location = 'Colombia'
 --0.2 Vaccination start date.
 --0.3 Doses applied to date.
 --0.4 People with the complete scheme to date.
---1.0.Categorization of cases by age group (View) (CASE y CREATE VIEW)
---2.1.Grouping deaths by age group and sex (GROUP BY)
---2.2.Grouping cases by age group and sex (GROUP BY)
---3.Cases and deaths by age group and sex - Joining both aggrupations (View) (CTE y JOIN)
+--1.0.Categorization of cases by age group (View) (CASE y CREATE VIEW).
+--2.1.Grouping deaths by age group and sex (GROUP BY).
+--2.2.Grouping cases by age group and sex (GROUP BY).
+--3.Cases and deaths by age group and sex - Joining both aggrupations (View) (CTE y JOIN).
 --4.Calculating fatality rate by age group and sex.
 --4.1.What is the segment of the population (age group and sex) with the highest latency rate?.
---5.Calculating fatality rate just by age group (View):
---5.1.What is the age group with the HIGHEST fatality rate? (SUB-QUERIES)
---5.2.What is the age group with the LOWEST fatality rate? (SUB-QUERIES)
---6.1.Cases by age group and month:
---6.2.Deaths by age group and month:
---6.3.Grouping Cases and Deaths by age group and month (View)
---6.4. Grouping by month: Agrupando por mes para sacar la letalidad general mes a mes
+--5.Calculating fatality rate just by age group (View).
+--5.1.What is the age group with the HIGHEST fatality rate? (SUB-QUERIES).
+--5.2.What is the age group with the LOWEST fatality rate? (SUB-QUERIES).
+--6.1.Cases by age group and month.
+--6.2.Deaths by age group and month.
+--6.3.Grouping Cases and Deaths by age group and month (View).
+--6.4. Grouping by month: Agrupando por mes para sacar la letalidad general mes a mes.
+--7.Calculating fatality rate by month and age group (View).
+--7.1.Filtering by a single age group.
+--8.1 Deaths by month.
+--8.2 Cases by month.
+--9.Deaths by day.
 
---7.1.Tabla de calculo de letalidad de cada grupo etario mes a mes (HACER ViEW)
---7.2.Creando la view especial de letalidad por grupo etario mes a mes
---7.3.Filtrando por un solo grupo etario:
-
---8.1 Fallecidos mes a mes
---8.2 Casos mes a mes
---9.0 Tabla de fallecidos  dia a día
 
 --0.Grouping cases by state: "activos", "fallecidos", "recuperados", "fallecidos no covid"  (active, deceased, recovered, non-covid deceased):
 SELECT estado, COUNT(estado) AS cantidad
 FROM Casos
 GROUP BY estado
 ORDER BY cantidad
-
 
 
 --0.1 Vaccination EDA:
@@ -432,7 +429,7 @@ GROUP BY año, mes
 ORDER BY año, mes
 
 
---7.1.Calculating fatality rate by month and age group (View)
+--7.Calculating fatality rate by month and age group (View)
 CREATE VIEW letalidad_por_grupoetario_por_mes AS
 SELECT año, mes, CONCAT(año,'-', mes) AS año_mes, grupo_etario, fallecidos, casos, ROUND((CONVERT(FLOAT, fallecidos)/CONVERT(FLOAT,casos))*100,2) AS letalidad
 FROM agrupacion_por_mes_y_grupoetario
@@ -442,22 +439,22 @@ FROM agrupacion_por_mes_y_grupoetario
 SELECT * FROM letalidad_por_grupoetario_por_mes ORDER BY año, mes, grupo_etario
 
 
---7.3.Filtrando por un solo grupo etario:
-SELECT año_mes, casos, fallecidos, grupo_etario, letalidad
-FROM letalidad_por_grupoetario_por_mes
-WHERE grupo_etario = '70 - 79'
-ORDER BY año, mes, grupo_etario
+	--7.1.Filtering by a single age group:
+	SELECT año_mes, casos, fallecidos, grupo_etario, letalidad
+	FROM letalidad_por_grupoetario_por_mes
+	WHERE grupo_etario = '70 - 79'
+	ORDER BY año, mes, grupo_etario
 
 
 
---8.1 Fallecidos mes a mes
+--8.1 Deaths by month
 --SELECT YEAR(fecha_muerte) AS año, MONTH(fecha_muerte) AS mes, COUNT(fecha_muerte) AS fallecidos
 --FROM Casos
 --GROUP BY MONTH(fecha_muerte), YEAR(fecha_muerte), estado
 --HAVING estado = 'Fallecido'
 --ORDER BY año, mes;
 
---8.2 Casos mes a mes
+--8.2 Cases by month
 --SELECT YEAR(fecha_reporte_web) AS año, MONTH(fecha_reporte_web) AS mes, COUNT(fecha_reporte_web) AS casos
 --FROM Casos
 --GROUP BY MONTH(fecha_reporte_web), YEAR(fecha_reporte_web)
@@ -465,7 +462,7 @@ ORDER BY año, mes, grupo_etario
 --ORDER BY año, mes;
 
 
---9.Tabla de fallecidos  dia a día
+--9.Deaths by day
 --SELECT fecha_muerte, COUNT(fecha_muerte) AS fallecimientos
 --FROM Casos
 --GROUP BY fecha_muerte, estado
