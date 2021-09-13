@@ -3,19 +3,19 @@
 --------------------------------------------------------------------------------
 --STANDARIZE DATE FORMAT
 
---Visualizamos las columnas de la forma que queremos.
+--Reatriving columns the way we need:
 SELECT TOP 10 fecha_reporte_web, CONVERT(DATE, fecha_reporte_web), fecha_muerte, CONVERT(DATE, fecha_muerte)
 FROM Casos
 ORDER BY id_caso
 
---Convertimos de tipo "datetime" a "date".
+--Convert "datetime" to "date".
 ALTER TABLE Casos
 ALTER COLUMN fecha_reporte_web DATE;
 
 ALTER TABLE Casos
 ALTER COLUMN fecha_muerte DATE;
 
---Convertimos el resto de columnas tipo datetime (no se utilizarán en el análisis pero servirá para futuros análisis).
+--Convert the rest of columns to "datetime" type (for furutre analysis):
 ALTER TABLE Casos
 ALTER COLUMN fecha_notificacion DATE;
 
@@ -32,26 +32,29 @@ ALTER COLUMN fecha_recuperacion DATE;
 ------------------------------------------------------------------------------------
 ---- CHECKING NULLS:
 
-SELECT * FROM Casos WHERE fecha_diagnostico IS NULL --> Can't analyze all cases by 'fecha_diagnostico' because it has nulls.
-SELECT * FROM Casos WHERE fecha_inicio_sintomas IS NULL --> Can't analyze all cases by 'fecha_inicio_sintomas' because it has nulls.
-SELECT * FROM Casos WHERE fecha_reporte_web IS NULL
+SELECT * FROM Casos WHERE fecha_diagnostico IS NULL
+SELECT COUNT(*) FROM Casos WHERE fecha_diagnostico IS NULL   --> Can't analyze cases by 'fecha_diagnostico' because it has too many nulls.
+
+SELECT * FROM Casos WHERE fecha_inicio_sintomas IS NULL
+SELECT COUNT(*) FROM Casos WHERE fecha_inicio_sintomas IS NULL  --> Can't analyze cases by 'fecha_inicio_sintomas' because it has too many nulls.
+
+SELECT * FROM Casos WHERE fecha_reporte_web IS NULL     --> 'fecha_reporte_web' was chosen for cases analysis.
 SELECT * FROM Casos WHERE id_caso IS NULL
 
-SELECT COUNT(*) FROM Casos WHERE fecha_inicio_sintomas IS NULL
-
-SELECT COUNT(*) FROM Casos WHERE fecha_diagnostico IS NULL
 
 
 
 ----------------------------------------------------------------------------------
 --CORRECTION OF DATE “1899-12-30” TO NULL
---Corrección de registros que se importaron erróneamente con la fecha de '1899-12-30'. Las Columnas con este error son: fecha_muerte, fecha_recuperación, fecha_inicio_sintomas y fecha_diagnostico.
+--Correction of records that were wrongly imported with the date of '1899-12-30'.
 
---Consulta para saber qué columnas tipo "fecha" tienen el error(ejemplo):
+--Query to find out which "date" type columns have the error:
 SELECT fecha_recuperacion FROM Casos WHERE fecha_recuperacion = '1899-12-30'
-
 SELECT fecha_muerte FROM Casos WHERE fecha_muerte = '1899-12-30'
+SELECT fecha_inicio_sintomas FROM Casos WHERE fecha_inicio_sintomas = '1899-12-30'
+SELECT fecha_diagnostico FROM Casos WHERE fecha_diagnostico = '1899-12-30'
 
+--Correction:
 UPDATE Casos
 SET fecha_muerte = NULL
 WHERE fecha_muerte = '1899-12-30'
@@ -74,28 +77,28 @@ WHERE fecha_diagnostico = '1899-12-30'
 ----------------------------------------------------------------------------------
 --NAME CORRECTION of DPTOS, MUNICIPIOS AND COUNTRY
 
---Consulta de los Dptos con errores: 
+--Query of departments with errors: 
 SELECT DISTINCT(nombre_dpto), codigo_divipola_dpto FROM Casos ORDER BY 1
 
---Corrección: (Solo un Dpto con error: 'NARIÃ‘O')
+--Correction: (Just one error found: 'NARIÃ‘O')
 UPDATE Casos
 SET nombre_dpto = 'NARIÑO'
 WHERE nombre_dpto = 'NARIÃ‘O'
 
 
---Consulta de los municipios con errores: 
---Se encuentran 15/1118 municipios con error en el nombre. Su correción no es indispensable para continuar con el análisis.
+---Query of municipalities with errors: 
+-- 15 out of 1118 municipalities were found with errors in the name. Its correction is not essential to continue with the analysis.
 SELECT DISTINCT(nombre_municipio), codigo_divipola_municipio FROM Casos ORDER BY 1 
 
 
---Consulta de los paises con errores en nombre y código.
---Se encuentran 20/86 paisess con error en el nombre. Correción no es indispensable en este análisis pero se ejecuta para futuros análisis.
+--Query of countries with errors:
+--20 out of 86 countries were found with errors in the name. Correction is no essential but it is exected for future analysis.
 SELECT nombre_pais, codigo_iso_pais, count(nombre_pais) AS cuenta
 FROM Casos
 GROUP BY nombre_pais, codigo_iso_pais
 ORDER BY 1
 
---Corrección:
+--Country name correction:
 UPDATE Casos
 SET nombre_pais = 'AFGANISTAN' WHERE nombre_pais = 'AFGANISTÃN'
 
