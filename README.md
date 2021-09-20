@@ -262,9 +262,10 @@ df_r6['año-semana'] = df_r6.año.astype(str)+'-'+df_r6.semana.astype(str)
 df_r6
 ```
 
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_week_linechart_v1.PNG "Fatality rate and Deaths by age group and week linechart")
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_week_linechart_v1.PNG "Fatality rate and Deaths by week linechart")  
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_AG_and_week_linechart.PNG "Fatality rate and Deaths by age group and week linechart")
 
-**Q2: How has the Covid-19 fatality rate evolved from the start of the pandemic until today?**  
+**Q3: Is there a change in trend at any point after the start of vaccination? In general, by age group?**  
 - During the first five months of pandemic the general fatality rate remains is very high. It begins to stabilize at values between 2% and 3% from month 08-2020.
 - If we analyze from 08-2020 to 09-2021, it it hard to say that there is a significant difference before and after the start vaccination at leats at this level of granularity.
 - We must take a closer look at the data and analyze the behavior of the fatality rate week by week.
