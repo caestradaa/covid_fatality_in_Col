@@ -176,17 +176,14 @@ END AS grupo_etario
 FROM Casos;
 ```
 
-Once the main view is created `Casos_con_grupo_etario`, we make a series of groupings by age group, gender and month using CTEs and Joins. We obtain several result sets that we save in different SQL Views:
+Once the main view is created `Casos_con_grupo_etario`, we make a series of groupings by age group, gender and month using CTEs and Joins. We obtain several result sets that we save in different SQL Views and that we later use to do the analyzes:
 - `agrupacion_por_grupoetario_y_sexo`: number of cases and deaths by **age group** and **gender**.
-- `letalidad_por_grupoetario`: number of cases, deaths and fatality rate just by **age group**.
+- `letalidad_por_grupoetario`: number of cases, deaths and fatality rate by **age group** only.
 - `agrupacion_por_mes_y_grupoetario`: number of cases and deaths by **month** and **age group**.
-- `letalidad_por_grupoetario_por_mes`: number of cases, deaths and fatality Rate by **month** and **age group**.
+- `letalidad_por_grupoetario_por_mes`: number of cases, deaths and fatality Rate by **month** and **age group**.  
 
-From the view `agrupacion_por_grupoetario_y_sexo`, we calculate fatality rate for each age group and gender and retrive the segment of the population with the highest fatality rate:  
 
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Segment_highes_%20fatality_rate.png "segment with the highest fatality rate")
-
-Calculating **fatality rate** by age group:
+### Fatality rate by Age Group:
 ```python
 %%sql
 --CREATE VIEW letalidad_por_grupoetario AS
@@ -197,8 +194,11 @@ GROUP BY grupo_etario;
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_age_group.png "Fatality_rate_by_age_group")
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_agegroup_barchart.png "Cases_by_age_group")
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Deaths_by_agegroup_barchart.png "Deaths_by_age_group")  
-- The age groups with the highest fatality rate are the more advance ones: `60 - 69`, `70 - 79` and `80 o más` with 7.2%, 15.4% and 26.7% respectively.  
-- The fatality rate of these groups is quite high compared with the general rate that is 2.50%.
+
+- Calculating fatality rate for each age group and gender we figure out that the segment of the population with the highest fatality rate are **men over 80 years old**:  
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Segment_highes_%20fatality_rate.png "segment with the highest fatality rate")
+- The age groups with the highest fatality rate are the more advance ones: `60 - 69`, `70 - 79` and `80 o más` with 7.3%, 15.6% and 27.1% respectively.  
+- The fatality rate of these groups is quite high compared with the general rate that is 2.55%.
 - It is shown that we cannot use the general fatality rate as a comparable measure for all age groups.
 
 
@@ -248,6 +248,8 @@ df_5.iloc[:,2:]
 
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_age_group_and_month.png "Fatality rate by age group and month_df")
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_age_group_and_month_linechart.png "Fatality rate by age group and month linechart")
+
+
 
 
 ## Conclusions
