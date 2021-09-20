@@ -143,9 +143,9 @@ Retrieving the number of cases and deaths by gender, calculating fatality rate a
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatalityrate_by_gender.png "Cases_deaths_fatality_by_gender")  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Piechart_Cases_by_gender.PNG "Cases_by_gender_piechart")
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Piechart_%20Deaths_by_gender.png "Deaths_by_gender_piechart")  
-- The proportion of infected people is similar in both genders, however, the fatality rate is much higher in men (3.23%) than in women (1.85%). This means men are 42% more likely to die than women if they contract the virus.  
-- 38.67% of the total deaths have been women and 61.33% have been men.  
-- According to the pie chart almost two-thirds (2/3) of the deceased are men.   
+- The proportion of infected people is similar in both genders, however, the fatality rate is much higher in men (3.28%) than in women (1.89%). This means men are about 45% more likely to die compared to women if they contract the virus.  
+- 38.91% of the total deaths have been women and 61.09% have been men.  
+- According to the data almost two-thirds (2/3) of the deceased are men. It is noticeable on the pie chart #2.   
 
 
 
