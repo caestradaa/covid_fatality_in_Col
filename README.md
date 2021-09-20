@@ -261,19 +261,47 @@ df_r6['letalidad'] = round((df_r6.fallecidos/df_r6.casos)*100,2)
 df_r6['año-semana'] = df_r6.año.astype(str)+'-'+df_r6.semana.astype(str)
 df_r6
 ```
+We proceed to make the visuas: The color lines represents the fatality rate week by week, and the pink bars in the background represents the number of deaths each week. We can clearly see the three peaks of deaths that have occurred in the country so we can compare what is its relation with fatality rate:
 
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_week_linechart_v1.PNG "Fatality rate and Deaths by week linechart")  
+*General Fatality Rate:*
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_week_linechart_v1.PNG "Fatality rate and Deaths by week linechart") 
+
+*Fatality Rate by Age Group:*
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_AG_and_week_linechart.PNG "Fatality rate and Deaths by age group and week linechart")
 
 **Q3: Is there a change in trend at any point after the start of vaccination? In general, by age group?**  
-- During the first five months of pandemic the general fatality rate remains is very high. It begins to stabilize at values between 2% and 3% from month 08-2020.
-- If we analyze from 08-2020 to 09-2021, it it hard to say that there is a significant difference before and after the start vaccination at leats at this level of granularity.
-- We must take a closer look at the data and analyze the behavior of the fatality rate week by week.
+- According to the graphs, a general downward trend in fatality is observed.
+- However, during the first three months after the start of vaccination, there does not seem to be a significant change that indicates a decrease in fatality rate. During this time, there are notable peaks and valleys in its behavior given the sudden increase and decrease in the number of infections during those months.
+- A slight decrease in the fatality rate starts to be noticeable only four months after the start of vaccination (from week 2021-23). From there, a downward trend in fatality is observed reaching 2.03% in 09-2021 which is the lowest value in the entire pandemic.
+- Fatality rate tends to be higher in older age groups. This behavior is maintained throughout the pandemic, confirming that older people have been the hardest hit by the virus.
+- The final downward trend in the fatality rate is very pronounced in the "70 -79" and "80 or more" groups. 
 
+**Q4: Which age group already vaccinated has had a better response to vaccines?** 
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Scatterplot_Cases_vs_Deaths_relationship_by_AG.PNG)
 
+### Vaccinations vs Fatality Rate
+We evaluate the relationship that exists between the weekly fatality rate with the accumulated weekly vaccines and we see what relationship they have. The above in order to determine if an increase in the number of vaccinated is correlated with a change in the fatality rate.
+Grouping vaccinations **by week**:  
+```python
+%%sql r8 <<
+SELECT YEAR(date) AS año, DATEPART(WEEK, date) AS semana, SUM(daily_vaccinations) AS vaccinations
+FROM Vaccinations
+WHERE location = 'Colombia'
+GROUP BY YEAR(date), DATEPART(WEEK, date)
+```
+Joining Vaccinations by week with Fatality rate by week:  
+```python
+df_r9 = df_r6.loc[(df_r6.año == 2021) & (df_r6.semana >=8) ,:].reset_index(drop=True)
+df_r8_9 = df_r9.merge(df_r8, how = 'left', on = 'año' and 'semana').drop('año_y', axis = 1).drop('año-semana', axis = 1)
+          .rename({'año_x' : 'año'}, axis = 1)
+```  
+*Vaccinations vs Fatallity Rate:*
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Scatterplot_Vaccinations_vs_FatallityRate.PNG "Vaccinations vs Fatallity Rate")
 
+*Comparig Fatality Rate and Vaccinations through time (by week):*
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/FatalityRate_vs_Vaccinations_by_week.PNG "Vaccinations vs Fatallity Rate through time")
 
-
+**Q5: Is there any relationship between the number of people vaccinated and the evolution of the fatality rate?** 
 
 
 
@@ -281,7 +309,7 @@ df_r6
 - Fatality rate tends to be higher in older age groups. This behavior is maintained month by month throughout the pandemic, confirming that older people have been the hardest hit by the virus. Therefore, it is correct to conclude that the older a person is, the greater risk of dying if they contract the disease.
 - According to the graphs, the people least affected by the pandemic are between 0 and 49 years old. In these age groups, fatality averages below 2%.
 - For the more advanced age groups, from 50 years old onwards, the changes in fatality rate are much more sensitive to the number of cases in each month.
-- During the first 3 months after the start of vaccination (02-2021), there does not seem to be a significant change that indicates a decrease in fatality rate, on the contrary, there are notable peaks and valleys in its behavior, given the sudden increase and decrease in the number of infections during those same months.
+- During the first 3 months after the start of vaccination, there does not seem to be a significant change that indicates a decrease in fatality rate, on the contrary, there are notable peaks and valleys in its behavior, given the sudden increase and decrease in the number of infections during those same months.
 - A decrease in the fatality rate is notorious only from 05-2021, which is the 4th month after the start of vaccination. Naturally, this change is noticeable in the more advanced age groups since they were a priority in the country's vaccination scheme.
 - The downward trend in the fatality rate is very pronounced in the "70 -79" and "80 or more" groups. 
 - Fatality rate in the group of "80 or more" has decreased from an average of 26.21% in the last 10 months, to 21.69% in 07-2021. Fatality rate in the group of "70 - 79" has decreased from an average of 15.51% to 11.59% in 07-2021.
