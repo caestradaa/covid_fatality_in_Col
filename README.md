@@ -150,6 +150,25 @@ Retrieving the number of cases and deaths by gender, calculating fatality rate a
 
 ### Vaccinations exploration: 
 
+```python
+v1 = %sql SELECT COUNT(*) FROM Vaccinations
+v2 = %sql SELECT COUNT(*) FROM Vaccinations WHERE location = 'Colombia'
+v3 = %sql SELECT MIN([date]) FROM Vaccinations WHERE location = 'Colombia'
+v4 = %sql SELECT MAX(total_vaccinations) FROM Vaccinations WHERE location = 'Colombia'
+v5 = %sql SELECT MAX(people_vaccinated) FROM Vaccinations WHERE location = 'Colombia'
+v6 = %sql SELECT MAX(people_fully_vaccinated) FROM Vaccinations WHERE location = 'Colombia'
+``` 
+
+- Total number of rows:                                47.844
+- Number of Vaccination dates in Colombia:                208
+- Vaccination start date:                          2021-02-17
+- Total number of doses administered:              37.444.197
+- People vaccinaed (at least one vaccine dose):    24.499.752
+- People with the complete scheme to date:         15.746.173  
+
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Vaccinations_day_by_day.PNG "Vaccinations day by day")  
+
+
 
 
 
