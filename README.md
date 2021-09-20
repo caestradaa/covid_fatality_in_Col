@@ -115,11 +115,9 @@ total_cases = r0[0][0]
 
 total_pop = 50339000
 prop_pop_inf = round((total_cases/total_pop)*100,2)
-print('Total cases reported to date =',total_cases)
-print('Proportion of the population infected =',prop_pop_inf, '%')
 ```
-- Total cases reported to date = 4.565.372  
-- Proportion of the population infected = 9.07 %  
+- Total cases reported to date = 4.932.998  
+- Proportion of the population infected = 9.8 %  
 
 
 ### Cases by status:  
@@ -132,22 +130,19 @@ r2 = %sql SELECT COUNT(estado) FROM Casos WHERE estado = 'Fallecido'
 total_deaths = r2[0][0]
 gen_mortality = (total_deaths*100000/total_pop)
 gen_fatality = (total_deaths/total_cases)*100
-
-print('Total deaths =', total_deaths)
-print('General Mortality rate =', round(gen_mortality,2), 'per 100,000 inhabitants')
-print('General Fatality rate =', round(gen_fatality,3), '%')
 ```  
-- Total deaths = 114.337  
-- General Mortality rate = 227.13 per 100,000 inhabitants  
-- General Fatality rate = 2.50%  
-- 94.57% of infected people have recovered from Covid-19.
+- Total deaths = 125.713 
+- General Mortality rate = 249.73 per 100,000 inhabitants  
+- General Fatality rate = 2.55%  
+- 96.72% of infected people have recovered from Covid-19.
 
 
 ### Cases, deaths and fatality rate by gender:  
 Retrieving the number of cases and deaths by gender, calculating fatality rate and setting a dataframe with the results:  
 
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatalityrate_by_gender.png "Cases_deaths_fatality_by_gender")  
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_deaths_fatality_by_gender_piechart.png "Deaths_by_gender_piechart")  
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Piechart_Cases_by_gender.PNG "Cases_by_gender_piechart")
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Piechart_%20Deaths_by_gender.png "Deaths_by_gender_piechart")  
 - The proportion of infected people is similar in both genders, however, the fatality rate is much higher in men (3.23%) than in women (1.85%). This means men are 42% more likely to die than women if they contract the virus.  
 - 38.67% of the total deaths have been women and 61.33% have been men.  
 - According to the pie chart almost two-thirds (2/3) of the deceased are men.   
