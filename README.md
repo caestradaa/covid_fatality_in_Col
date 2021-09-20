@@ -224,46 +224,45 @@ GROUP BY grupo_etario;
 
 
 ### Effect of vaccines on Fatality Rate
-Here we study how the fatality rate of each age group has evolved from month to month. We focused on comparing the behavior of this measure before and after the start of vaccination in February 2021, looking for any positive effect on each age group.
+Here we study how the fatality rate of each age group has evolved through time. We will focus primarily on comparing fatality rate before and after the start of vaccination (Feb 2021), but also, we will see how **this measure is related with the number of vaccines dosed week by week**. We will see if there is any positive effect by reducing fatality rate for each age group.
 
-First we group cases and deaths by **month** and **age group** using CTEs statements and then joining the results in one table.
-```python
-%%sql
---CREATE VIEW agrupacion_por_mes_y_grupoetario AS
-WITH CTE3_casos (año, mes, grupo_etario, casos) AS (
-      SELECT YEAR(fecha_reporte_web) AS año, MONTH(fecha_reporte_web) AS mes, grupo_etario, COUNT(fecha_reporte_web) AS casos
-      FROM Casos_con_grupo_etario
-      GROUP BY YEAR(fecha_reporte_web), MONTH(fecha_reporte_web), grupo_etario
-      ),
-    CTE4_muertes (año, mes, grupo_etario, fallecidos) AS (
-      SELECT YEAR(fecha_muerte) AS año, MONTH(fecha_muerte) AS mes, grupo_etario, COUNT(fecha_muerte) AS fallecidos
-      FROM Casos_con_grupo_etario
-      GROUP BY YEAR(fecha_muerte), MONTH(fecha_muerte), grupo_etario, estado
-      HAVING estado = 'Fallecido'
-      )
-SELECT c.año, c.mes, c.grupo_etario, fallecidos, casos
-FROM CTE3_casos c
-LEFT JOIN CTE4_muertes m ON c.año = m.año AND c.mes = m.mes AND c.grupo_etario = m.grupo_etario
-```
-Then, calculating fatality rate by **month**, capturing the result table in a dataframe and ploting we get the next chart. The dotted line represents the start of vaccinations in the country.  
+**By Month**:
+First we grouped cases and deaths by **month** and **age group** using CTEs statements and then joining the results in one table. Then, calculating fatality rate and ploting the results we get the next chart. The dotted line represents the start of vaccinations in the country. 
 
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_month_linechart.png "Fatality rate by month linechart")  
 **Q2: How has the Covid-19 fatality rate evolved from the start of the pandemic until today?**  
 - During the first five months of pandemic the general fatality rate remains is very high. It begins to stabilize at values between 2% and 3% from month 08-2020.
 - If we analyze from 08-2020 to 09-2021, it it hard to say that there is a significant difference before and after the start vaccination at leats at this level of granularity.
 - We must take a closer look at the data and analyze the behavior of the fatality rate *week by week*.
-<---!- A downward trend in fatality is observed reaching 2.03% in 09-2021 which is the lowest value in the entire pandemic.-->
 
+**By Week**:
+Due to the lack of details we got from month to month, we analyze fatality rate **week by week**. Using CTEs statements and then joining the results in one table, we follow the same procedure as we did before:
 
-Finally, calculating fatality rate for **each age group** by **month**: and capturing the result table in a dataframe we get:
 ```python
-
+%%sql r6 <<
+WITH CTE5_casos (año, semana, casos) AS (
+      SELECT YEAR(fecha_reporte_web) AS año, DATEPART(WEEK,fecha_reporte_web), COUNT(fecha_reporte_web) AS casos
+      FROM Casos_con_grupo_etario
+      GROUP BY YEAR(fecha_reporte_web), DATEPART(WEEK,fecha_reporte_web)
+      ),
+    CTE6_muertes (año, semana, fallecidos) AS (
+      SELECT YEAR(fecha_muerte) AS año, DATEPART(WEEK,fecha_reporte_web), COUNT(fecha_muerte) AS fallecidos
+      FROM Casos_con_grupo_etario
+      GROUP BY YEAR(fecha_muerte), DATEPART(WEEK,fecha_reporte_web), estado
+      HAVING estado = 'Fallecido'
+      )
+SELECT c.año, c.semana, fallecidos, casos
+FROM CTE5_casos c
+LEFT JOIN CTE6_muertes m ON c.año = m.año AND c.semana = m.semana
+ORDER BY año, semana
 ```
-
+Finally, capturing the result table in a dataframe and then calculating fatality rate:
 
 ```python
-
-
+df_r6 = r6.DataFrame()
+df_r6['letalidad'] = round((df_r6.fallecidos/df_r6.casos)*100,2)
+df_r6['año-semana'] = df_r6.año.astype(str)+'-'+df_r6.semana.astype(str)
+df_r6
 ```
 
 ![alt text]( "Fatality rate by age group and week linechart")
