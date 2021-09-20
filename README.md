@@ -15,8 +15,7 @@ This project seeks to have a deeper knowledge of the behaviour of the pandemic i
 <!---This pandemic has put us to the test as humanity, exposing the fragility of our economic systems, however, it has also been a trigger to reflect on our consumer lifestyle and accelerate the transformation towards new, more sustainable production models.-->
 
 #### Some questions to answer:
-<!--- - What proportion of the total population and infected population has died from Covid-19?
-- How many vaccine doses have been administered to date? How many people have received at least one dose? How many are fully vaccinated?-->
+- How many vaccine doses have been administered to date? How many people have received at least one dose? How many are fully vaccinated?
 - How has the Covid-19 fatality rate evolved from the start of the pandemic until today?
 - Is there a change in trend at any point after the start of vaccination? In general, by age group and by gender.
 - Which age group already vaccinated has had a better response to vaccines?
@@ -149,7 +148,7 @@ Retrieving the number of cases and deaths by gender, calculating fatality rate a
 
 
 ### Vaccinations exploration: 
-
+**Q1: How many vaccine doses have been administered to date? How many people have received at least one dose? How many are fully vaccinated?**  
 ```python
 v1 = %sql SELECT COUNT(*) FROM Vaccinations
 v2 = %sql SELECT COUNT(*) FROM Vaccinations WHERE location = 'Colombia'
@@ -246,28 +245,28 @@ SELECT c.año, c.mes, c.grupo_etario, fallecidos, casos
 FROM CTE3_casos c
 LEFT JOIN CTE4_muertes m ON c.año = m.año AND c.mes = m.mes AND c.grupo_etario = m.grupo_etario
 ```
-Then, calculating fatality rate by **month**, capturing the result table in a dataframe and ploting we get:  
+Then, calculating fatality rate by **month**, capturing the result table in a dataframe and ploting we get the next chart. The dotted line represents the start of vaccinations in the country.  
 
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_month_linechart.png "Fatality rate by month linechart")  
-- During the first months the general fatality rate remains is very high. It begins to stabilize at values between 2% and 3% from month 08-2020.
-- After 3 months of vaccination, from month 05-2021, a downward trend in fatality is observed reaching 1.95% in 07-2021. It is the lowest value in the entire pandemic.
+**Q2: How has the Covid-19 fatality rate evolved from the start of the pandemic until today?**  
+- During the first five months of pandemic the general fatality rate remains is very high. It begins to stabilize at values between 2% and 3% from month 08-2020.
+- If we analyze from 08-2020 to 09-2021, it it hard to say that there is a significant difference before and after the start vaccination at leats at this level of granularity.
+- We must take a closer look at the data and analyze the behavior of the fatality rate *week by week*.
+<---!- A downward trend in fatality is observed reaching 2.03% in 09-2021 which is the lowest value in the entire pandemic.-->
 
 
 Finally, calculating fatality rate for **each age group** by **month**: and capturing the result table in a dataframe we get:
 ```python
-%%sql
---CREATE VIEW letalidad_por_grupoetario_por_mes AS
-SELECT año, mes, CONCAT(año,'-', mes) AS año_mes, grupo_etario, fallecidos, casos, ROUND((CONVERT(FLOAT, fallecidos)/CONVERT(FLOAT,casos))*100,2) AS letalidad
-FROM agrupacion_por_mes_y_grupoetario
-ORDER BY año, mes, grupo_etario
-```
-```python
-r5 = %sql SELECT * FROM letalidad_por_grupoetario_por_mes ORDER BY año, mes, grupo_etario
-df_5 = r5.DataFrame()
-df_5.iloc[:,2:]
+
 ```
 
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_age_group_and_month_linechart.png "Fatality rate by age group and month linechart")
+
+```python
+
+
+```
+
+![alt text]( "Fatality rate by age group and week linechart")
 
 
 
@@ -288,14 +287,10 @@ df_5.iloc[:,2:]
 [notebook]:https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Notebook%20-%20Effect%20of%20Vaccines%20on%20Covid19%20fatality%20rate%20in%20Colombia.ipynb
 [sqlfile]:https://github.com/caestradaa/covid_fatality_in_Col/blob/main/SQLQueries.sql
 
-<!---## Specific Analysis
-
-### First analysis
+<!---
 
 ![alt text]( "")
 ![alt text]( "")
-
-### Second analysis
 
 ![alt text]( "")
 ![alt text]( "")
@@ -316,12 +311,10 @@ for i in range(0,6):
 <!---Para ocultar-->
 
 
-<!---
 | estado      | cantidad   | porcentaje  |
 | ----------- |:----------:| -----------:|
 | N/A         | 12926      | 0.28        |
 | Fallecido   | 114337     | 2.50        |
 | Activo      | 120673     | 2.64        |
-| Recuperado  | 4317436    | 94.57       |-->
-
+| Recuperado  | 4317436    | 94.57       |
 -->
