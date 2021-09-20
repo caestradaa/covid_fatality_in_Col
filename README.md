@@ -172,6 +172,7 @@ v6 = %sql SELECT MAX(people_fully_vaccinated) FROM Vaccinations WHERE location =
 
 
 
+
 ## Explanatory Analysis
 ### Categorization of Cases by Age Group:
 In order to calculate the fatality rate of each group we created a SQL View called `Casos_con_grupo_etario` from the main dataset `Casos`.
@@ -196,8 +197,7 @@ CASE
  ELSE '0 - 04'
 END AS grupo_etario
 FROM Casos;
-```
-
+```  
 Once the main view is created `Casos_con_grupo_etario`, we make a series of groupings by age group, gender and month using CTEs and Joins. We obtain several result sets that we save in different SQL Views and that we later use to do the analyzes:
 - `agrupacion_por_grupoetario_y_sexo`: number of cases and deaths by **age group** and **gender**.
 - `letalidad_por_grupoetario`: number of cases, deaths and fatality rate by **age group** only.
@@ -248,7 +248,6 @@ LEFT JOIN CTE4_muertes m ON c.año = m.año AND c.mes = m.mes AND c.grupo_etario
 ```
 Then, calculating fatality rate by **month**, capturing the result table in a dataframe and ploting we get:  
 
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_month.png "")
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_month_linechart.png "Fatality rate by month linechart")  
 - During the first months the general fatality rate remains is very high. It begins to stabilize at values between 2% and 3% from month 08-2020.
 - After 3 months of vaccination, from month 05-2021, a downward trend in fatality is observed reaching 1.95% in 07-2021. It is the lowest value in the entire pandemic.
@@ -268,8 +267,8 @@ df_5 = r5.DataFrame()
 df_5.iloc[:,2:]
 ```
 
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_age_group_and_month.png "Fatality rate by age group and month_df")
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_age_group_and_month_linechart.png "Fatality rate by age group and month linechart")
+
 
 
 
