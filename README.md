@@ -235,7 +235,7 @@ First we grouped cases and deaths by **month** and **age group** using CTEs stat
 - We must take a closer look at the data and analyze the behavior of the fatality rate week by week.
 
 **By Week**:  
-Due to the lack of details we got from month to month, we analyze fatality rate **week by week**. Using CTEs statements and then joining the results in one table, we follow the same procedure as we did before:
+Due to the lack of details we got from month to month, we analyze fatality rate **week by week**. Using CTEs statements and then joining the results in one table, we follow the same procedure as we did before. Finally, we capture the result table in a dataframe and then calculate fatality rate:
 
 ```python
 %%sql r6 <<
@@ -255,8 +255,6 @@ FROM CTE5_casos c
 LEFT JOIN CTE6_muertes m ON c.año = m.año AND c.semana = m.semana
 ORDER BY año, semana
 ```
-Finally, capturing the result table in a dataframe and then calculating fatality rate:
-
 ```python
 df_r6 = r6.DataFrame()
 df_r6['letalidad'] = round((df_r6.fallecidos/df_r6.casos)*100,2)
@@ -264,7 +262,15 @@ df_r6['año-semana'] = df_r6.año.astype(str)+'-'+df_r6.semana.astype(str)
 df_r6
 ```
 
-![alt text]( "Fatality rate by age group and week linechart")
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_week_linechart_v1.PNG "Fatality rate and Deaths by age group and week linechart")
+
+**Q2: How has the Covid-19 fatality rate evolved from the start of the pandemic until today?**  
+- During the first five months of pandemic the general fatality rate remains is very high. It begins to stabilize at values between 2% and 3% from month 08-2020.
+- If we analyze from 08-2020 to 09-2021, it it hard to say that there is a significant difference before and after the start vaccination at leats at this level of granularity.
+- We must take a closer look at the data and analyze the behavior of the fatality rate week by week.
+
+
+
 
 
 
