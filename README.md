@@ -148,6 +148,9 @@ Retrieving the number of cases and deaths by gender, calculating fatality rate a
 - According to the data almost two-thirds (2/3) of the deceased are men. It is noticeable on the pie chart #2.   
 
 
+### Vaccinations exploration: 
+
+
 
 
 ## Explanatory Analysis
@@ -195,7 +198,7 @@ GROUP BY grupo_etario;
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_agegroup_barchart.png "Cases_by_age_group")
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Deaths_by_agegroup_barchart.png "Deaths_by_age_group")  
 
-- Calculating fatality rate for each age group and gender we figure out that the segment of the population with the highest fatality rate are **men over 80 years old**:  
+- When calculating fatality rate by age group and gender we figure out that the segment of the population with the highest fatality rate are **men over 80 years old**:  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Segment_highes_%20fatality_rate.png "segment with the highest fatality rate")
 - The age groups with the highest fatality rate are the more advance ones: `60 - 69`, `70 - 79` and `80 o más` with 7.3%, 15.6% and 27.1% respectively.  
 - The fatality rate of these groups is quite high compared with the general rate that is 2.55%.
