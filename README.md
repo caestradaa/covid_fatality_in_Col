@@ -26,20 +26,20 @@ This project seeks to have a deeper knowledge of the behaviour of the pandemic i
 
 
 ## Data Collection
-All the data required for this project was searched from multiple sources on the web, from official government websites to the repositories of recognized organizations for data collection and analysis.
-1. **"Cases"**: Official data of positive cases of Covid-19 in Colombia (until July 14, 2021), extracted in a CSV file from the official repository of the National Institute of Health. 23 columns and 4.565.372 records. It is updated daily with the new registered cases. [INS Cases dataset](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Casos-positivos-de-COVID-19-en-Colombia/gt2j-8ykr "Casos positivos de COVID19 en Colombia").
-2. **"Vaccinations"**: Data corresponding to daily vaccination in Colombia (until July 15, 2021), extracted in a CSV file from the Our World On Data repository compilated from official sources. 12 columns and 33.672 rows. [Vaccinations dataset](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations "Vacunación").
+All the data required for this project was searched from multiple sources on the web, from official government websites to the repositories of recognized organizations for data collection and analysis. Two datasets were loaded to a database called "CovidColombia" created on a local server using Microsoft SQL Server:
+1. **"Cases"**: Official data of positive cases of Covid-19 in Colombia (until Sep 14, 2021), extracted in a CSV file from the official repository of the National Institute of Health. 23 columns and 4.932.998 records. It is updated daily with the new registered cases. [INS Cases dataset](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Casos-positivos-de-COVID-19-en-Colombia/gt2j-8ykr "Casos positivos de COVID19 en Colombia").
+2. **"Vaccinations"**: Data corresponding to daily vaccination in Colombia (until Sep 14, 2021), extracted in a CSV file from the Our World On Data repository compilated from official sources. 14 columns and 47.844 rows. [Vaccinations dataset](https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations "Vacunación").  
 
-**Loading raw datasets:** The two datasets were loaded to a database called "CovidColombia" created on a local server using Microsoft SQL Server. Two tables were created: `Casos` and `Vacunación`, corresponding to each CSV file. As shown above, erroneous data was written in the null records of date fields. Those bugs were fixed in the data cleaning.
-
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Raw_dataset_preview_Casos_errors.png "Raw data preview")
 
 
 
 
 ## Data Cleaning
-Cleaning of both datasets was done with SQL in SQL Server Management Studio. All performed procedures are documented in the attached **[.SQL file][sqlfile]**. The following transformations were performed:
-#### 1. Cases:
+Cleaning of both datasets was done with SQL in SQL Server Management Studio. All performed procedures are documented in the attached **[.SQL file][sqlfile]**.
+
+#### 1. Cases:   
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Raw_dataset_preview_Casos_errors.png "Raw data preview")  
+As shown above, erroneous data was written in the null records of date fields. The following transformations were performed:
 - Conversion of date format "datetime" to "date" in all date type columns.
 - Replacement of record "1899-12-30 00: 00: 00.000" by null records (date records that were originally null in the csv were wrongly imported as "1899-12-30 00: 00: 00.000").
 - Change column name from `estado` to `severidad`, as it better explains the content of the field: the degree of severity of each case.
