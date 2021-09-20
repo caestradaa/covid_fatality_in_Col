@@ -4,9 +4,9 @@
 
 ## Overview
 - A data analysis on Covid-19 in Colombia was made in order to understand the effects that mass vaccination is having on the fatality rate, and determine if there really is a positive impact on vaccinated population.
-- Two datasets were used: Covid-19 positive cases data in Colombia extracted from the oficial repository of the National Institute of Health (4.5M rows up to July 14, 2021), and Vaccination data extracted from the official Our World in Data repository (127 rows).
+- Two datasets were used: Covid-19 positive cases data in Colombia extracted from the oficial repository of the National Institute of Health (4.9M rows up to Sep 14, 2021), and Vaccination data extracted from the official Our World in Data repository (208 rows).
 - Project tools: SQL Server for loading and cleaning data: **[SQL file][sqlfile]**. SQL and Python for exploratory and explanatory analysis on a **[Jupyter notebook][notebook]** via %sql magic.
-- It was found that during the first 3 months after the start of vaccination, there is no significant change in the fatality rate, however, from 06-2021 there is a notable decrease. In people over 70 years old, fatality rate has decreased on average by 21.25%. <!---In the age group from 70 to 79 fatality rate has decreased by 25.27%.-->
+- It was found that during the first six months after the start of vaccination, there has only been a slight decrease in the fatality rate. The change has been slow and only begins to be noticeable after the seventh month (09-2021). In the last two months fatality rate has decreased on average by 28%. <!---In people over 70 years old, fatality rate has decreased on average by 21.25%. In the age group from 70 to 79 fatality rate has decreased by 25.27%.-->
 
 
 
@@ -21,7 +21,7 @@ This project seeks to have a deeper knowledge of the behaviour of the pandemic i
 - Is there a change in trend at any point after the start of vaccination? In general, by age group and by gender.
 - Which age group already vaccinated has had a better response to vaccines?
 - Is there any relationship between the number of people vaccinated and the evolution of the fatality rate?
-- According to the current vaccination rate, when would 70% of the population be fully vaccinated?
+<!---- According to the current vaccination rate, when would 70% of the population be fully vaccinated?-->
 
 
 
@@ -32,7 +32,7 @@ All the data required for this project was searched from multiple sources on the
 
 **Loading raw datasets:** The two datasets were loaded to a database called "CovidColombia" created on a local server using Microsoft SQL Server. Two tables were created: `Casos` and `Vacunación`, corresponding to each CSV file. As shown above, erroneous data was written in the null records of date fields. Those bugs were fixed in the data cleaning.
 
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Raw_dataset_preview_Casos_Data_errors.png "Raw data preview")
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Raw_dataset_preview_Casos_errors.png "Raw data preview")
 
 
 
@@ -44,10 +44,9 @@ Cleaning of both datasets was done with SQL in SQL Server Management Studio. All
 - Replacement of record "1899-12-30 00: 00: 00.000" by null records (date records that were originally null in the csv were wrongly imported as "1899-12-30 00: 00: 00.000").
 - Change column name from `estado` to `severidad`, as it better explains the content of the field: the degree of severity of each case.
 - Change column name from `recuperado` by `estado`, as it better explains the content of the column: the current status of the case.
-- *Correction of the names of municipalities, departments and countries with wrong characters. ISO code was corrected too.  
- **<font size="0.5">Not necessary for this analysis but for future ones.</font>*
+- *Correction of the names of municipalities, departments and countries with wrong characters. ISO code was corrected too. **<font size="0.5">Not necessary for this analysis but for future ones.</font>*
 
-Some procedures executed:
+Some cleaning procedures executed:
 ```sql
 --STANDARIZE DATE FORMAT: Converting "datetime" to "date".
 SELECT TOP 10 fecha_reporte_web, CONVERT(DATE, fecha_reporte_web), fecha_muerte, CONVERT(DATE, fecha_muerte)
@@ -71,7 +70,7 @@ WHERE fecha_muerte = '1899-12-30';
 EXEC SP_RENAME 'Casos.recuperado', 'estado', 'COLUMN';
 
 ```
-Finally retrieving only the columns that interest to this analysis in the notebook:
+Finally after cleanig, we retrieve only the columns that interest to this analysis:
 
 ```sql
 SELECT TOP 5 fecha_reporte_web, id_caso, edad, unidad_medida_edad, sexo, estado, fecha_muerte
@@ -91,12 +90,10 @@ Column explanation:
 - `fecha_de_muerte`: declared date of death.
 
 #### 2. Vaccinations:
+- Convert "datetime" type to "date" type.
 - Retrieving data concerning Colombia.
 ```sql
-SELECT *
-FROM Vaccinations
-WHERE location = 'Colombia'
-ORDER BY fecha
+SELECT * FROM Vaccinations WHERE location = 'Colombia' ORDER BY fecha
 ```  
 
 <!---![alt text]( "") -->
