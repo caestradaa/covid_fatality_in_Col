@@ -156,8 +156,7 @@ v3 = %sql SELECT MIN([date]) FROM Vaccinations WHERE location = 'Colombia'
 v4 = %sql SELECT MAX(total_vaccinations) FROM Vaccinations WHERE location = 'Colombia'
 v5 = %sql SELECT MAX(people_vaccinated) FROM Vaccinations WHERE location = 'Colombia'
 v6 = %sql SELECT MAX(people_fully_vaccinated) FROM Vaccinations WHERE location = 'Colombia'
-``` 
-
+```  
 - Total number of rows:                                47.844
 - Number of Vaccination dates in Colombia:                208
 - Vaccination start date:                          2021-02-17
@@ -226,16 +225,16 @@ GROUP BY grupo_etario;
 ### Effect of vaccines on Fatality Rate
 Here we study how the fatality rate of each age group has evolved through time. We will focus primarily on comparing fatality rate before and after the start of vaccination (Feb 2021), but also, we will see how **this measure is related with the number of vaccines dosed week by week**. We will see if there is any positive effect by reducing fatality rate for each age group.
 
-**By Month**:
+**By Month**:  
 First we grouped cases and deaths by **month** and **age group** using CTEs statements and then joining the results in one table. Then, calculating fatality rate and ploting the results we get the next chart. The dotted line represents the start of vaccinations in the country. 
 
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_month_linechart.png "Fatality rate by month linechart")  
 **Q2: How has the Covid-19 fatality rate evolved from the start of the pandemic until today?**  
 - During the first five months of pandemic the general fatality rate remains is very high. It begins to stabilize at values between 2% and 3% from month 08-2020.
 - If we analyze from 08-2020 to 09-2021, it it hard to say that there is a significant difference before and after the start vaccination at leats at this level of granularity.
-- We must take a closer look at the data and analyze the behavior of the fatality rate *week by week*.
+- We must take a closer look at the data and analyze the behavior of the fatality rate week by week.
 
-**By Week**:
+**By Week**:  
 Due to the lack of details we got from month to month, we analyze fatality rate **week by week**. Using CTEs statements and then joining the results in one table, we follow the same procedure as we did before:
 
 ```python
