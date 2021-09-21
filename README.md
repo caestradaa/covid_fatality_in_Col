@@ -17,11 +17,11 @@ This project seeks to have a deeper knowledge of the behaviour of the pandemic i
 <!---This pandemic has put us to the test as humanity, exposing the fragility of our economic systems, however, it has also been a trigger to reflect on our consumer lifestyle and accelerate the transformation towards new, more sustainable production models.-->
 
 #### Some questions to answer:
-- How many vaccine doses have been administered to date? How many people have received at least one dose? How many are fully vaccinated?
-- How has the Covid-19 fatality rate evolved from the start of the pandemic until today?
-- Is there a change in trend at any point after the start of vaccination? In general, by age group and by gender.
-- Which age group already vaccinated has had a better response to vaccines?
-- Is there any relationship between the number of people vaccinated and the evolution of the fatality rate?
+- **Q1**: How many vaccine doses have been administered to date? How many people have received at least one dose? How many are fully vaccinated?  
+- **Q2**: How has the Covid-19 fatality rate evolved from the start of the pandemic until today?  
+- **Q3**: Is there a change in trend at any point after the start of vaccination? In general, by age group and by gender.  
+- **Q4**: Which age group already vaccinated has had a better response to vaccines?  
+- **Q5**: Is there any relationship between the number of people vaccinated and the evolution of the fatality rate?  
 <!---- According to the current vaccination rate, when would 70% of the population be fully vaccinated?-->
 
 
