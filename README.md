@@ -355,7 +355,6 @@ de codigo
 
 <!---Para ocultar-->
 
-
 <!---| estado      | cantidad   | porcentaje  |
 | ----------- |:----------:| -----------:|
 | N/A         | 12926      | 0.28        |
