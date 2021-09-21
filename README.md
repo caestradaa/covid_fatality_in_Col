@@ -220,6 +220,7 @@ GROUP BY grupo_etario;
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Segment_highes_%20fatality_rate.png "segment with the highest fatality rate")
 - The age groups with the highest fatality rate are the more advance ones: `60 - 69`, `70 - 79` and `80 o más` with 7.3%, 15.6% and 27.1% respectively.  
 - The fatality rate of these groups is quite high compared with the general rate that is 2.55%.
+- The people least affected by the pandemic are between 0 and 49 years old. In these groups, fatality averages below 2%.
 - It is shown that we cannot use the general fatality rate as a comparable measure for all age groups.
 
 
@@ -278,8 +279,8 @@ We proceed to make the visuas: The color lines represents the fatality rate week
 - The final downward trend in the fatality rate is very pronounced in the "70 -79" and "80 or more" groups. 
 
 **Q4: Which age group already vaccinated has had a better response to the virus?**  
-As we already know, the vaccination plan gives priority to the elderly. Therefore, the oldest age groups are those that are more advanced in the vaccination schedule. One might think that these are the groups that should have the best response to the virus. However, we cannot know with certainty if the difference in each group in reduction of the fatality rate is due to the administration of vaccines or to the reduction of infections in each one.  
-We have analyzed the behavior of the fatality rate individually in each age group. As we will see below, age group '60 - 69' is the one that has had the greatest reduction in the fatality rate since the beginning of vaccination.
+- As we already know, the vaccination plan gives priority to the elderly. Therefore, the oldest age groups are those that are more advanced in the vaccination schedule. One might think that these are the groups that should have the best response to the virus. However, we cannot know with certainty if the difference in each group in reduction of the fatality rate is due to the administration of vaccines or to the reduction of infections in each one.  
+- We have analyzed the behavior of the fatality rate individually in each age group. As we will see below, age group '60 - 69' is the one that has had the greatest reduction in the fatality rate since the beginning of vaccination.
 
 *Fatality Rate (Age Group: 60 - 69):*  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_AG60-69_and_week_linechart.PNG)
@@ -319,24 +320,25 @@ df_r8_9 = df_r9.merge(df_r8, how = 'left', on = 'año' and 'semana').drop('año_
 
 
 ## Conclusions
-- Fatality rate tends to be higher in older age groups. This behavior is maintained month by month throughout the pandemic, confirming that older people have been the hardest hit by the virus. Therefore, it is correct to conclude that the older a person is, the greater risk of dying if they contract the disease.
-- According to the graphs, the people least affected by the pandemic are between 0 and 49 years old. In these age groups, fatality averages below 2%.
-- For the more advanced age groups, from 50 years old onwards, the changes in fatality rate are much more sensitive to the number of cases in each month.
-- During the first 3 months after the start of vaccination, there does not seem to be a significant change that indicates a decrease in fatality rate, on the contrary, there are notable peaks and valleys in its behavior, given the sudden increase and decrease in the number of infections during those same months.
-- A decrease in the fatality rate is notorious only from 05-2021, which is the 4th month after the start of vaccination. Naturally, this change is noticeable in the more advanced age groups since they were a priority in the country's vaccination scheme.
-- The downward trend in the fatality rate is very pronounced in the "70 -79" and "80 or more" groups. 
-- Fatality rate in the group of "80 or more" has decreased from an average of 26.21% in the last 10 months, to 21.69% in 07-2021. Fatality rate in the group of "70 - 79" has decreased from an average of 15.51% to 11.59% in 07-2021.
-- In other words, fatality rate has decreased by 17.24% for the group of "80 or more" and by 25.27% for the group of "70 - 79" after 6 months from the start of vaccination.
-
+- Fatality rate tends to be higher in older age groups. This behavior is maintained throughout the pandemic. Therefore, it is correct to conclude that the older a person is, the greater risk of dying if they contract the disease.
+- According to the research, the people least affected by the pandemic are between 0 and 49 years old. In these age groups, fatality averages below 2%.
+- During the first three months after the start of vaccination, there does not seem to be a significant change that indicates a decrease in fatality rate, however, a slight decrease in the fatality rate starts to be noticeable four months after the start of vaccination (from week 2021-23). Naturally, this change is evident in the more advanced age groups since they were a priority in the country's vaccination scheme.
+- The age group of '60 - 69' is the one that has had the greatest reduction in the fatality rate since the beginning of vaccination: about 31% on average.
+- If we look the whole piceture, a general downward trend in the fatality rate is observed. It can be caused by multiple reasons: from a better effectiveness in hospital treatments to the immunity obtained by the vaccine. The data presented here show us that even though it is slight, the correlation exists: as the number of doses applied increases, the overall fatality rate decreases.
+- It is true that there is a long way to go in the vaccination scheme, but the results of the advances may already begin to be noticed. In the coming months, vaccines will be able to be tested upon the arrival of a fourth wave of infections.
 
 
 [notebook]:https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Notebook%20-%20Effect%20of%20Vaccines%20on%20Covid19%20fatality%20rate%20in%20Colombia.ipynb
 [sqlfile]:https://github.com/caestradaa/covid_fatality_in_Col/blob/main/SQLQueries.sql
 
-<!---
 
-![alt text]( "")
-![alt text]( "")
+
+
+
+<!---
+- The downward trend in the fatality rate is very pronounced in the "70 -79" and "80 or more" groups. 
+- Fatality rate in the group of "80 or more" has decreased from an average of 26.21% in the last 10 months, to 21.69% in 07-2021. Fatality rate in the group of "70 - 79" has decreased from an average of 15.51% to 11.59% in 07-2021.
+- In other words, fatality rate has decreased by 17.24% for the group of "80 or more" and by 25.27% for the group of "70 - 79" after 6 months from the start of vaccination.
 
 ![alt text]( "")
 ![alt text]( "")
@@ -347,11 +349,6 @@ df_r8_9 = df_r9.merge(df_r8, how = 'left', on = 'año' and 'semana').drop('año_
 ```
 para bloque
 de codigo
-```
-
-```python
-for i in range(0,6):
-  if i :
 ```
 
 <!---Para ocultar-->
