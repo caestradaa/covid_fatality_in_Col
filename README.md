@@ -2,11 +2,13 @@
 *Data analysis project about the effect of vaccines on covid-19 fatality in Colombia.*
 
 
+
 ## Overview
 - A data analysis on Covid-19 in Colombia was made in order to understand the effects that mass vaccination is having on the fatality rate, and determine if there really is a positive impact on vaccinated population.
 - Two datasets were used: Covid-19 positive cases data in Colombia extracted from the oficial repository of the National Institute of Health (4.9M rows up to Sep 14, 2021), and Vaccination data extracted from the official Our World in Data repository (208 rows).
 - Project tools: SQL Server for loading and cleaning data: **[SQL file][sqlfile]**. SQL and Python for exploratory and explanatory analysis on a **[Jupyter notebook][notebook]** via %sql magic.
 - It was found that during the first six months after the start of vaccination, there has been a slight decrease in the fatality rate. The change has been slow and only begins to be noticeable after the seventh month (09-2021). In the last two months fatality rate has decreased on average by 28%. <!---In people over 70 years old, fatality rate has decreased on average by 21.25%. In the age group from 70 to 79 fatality rate has decreased by 25.27%.-->
+
 
 
 
@@ -95,7 +97,6 @@ Column explanation:
 SELECT * FROM Vaccinations WHERE location = 'Colombia' ORDER BY fecha
 ```  
 
-<!---![alt text]( "") -->
 
 
 
@@ -213,7 +214,7 @@ GROUP BY grupo_etario;
 ```  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_age_group.png "Fatality_rate_by_age_group")
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Cases_by_agegroup_barchart.png "Cases_by_age_group")
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Deaths_by_agegroup_barchart.png "Deaths_by_age_group")  
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Deaths_by_age_group_barchart.png "Deaths_by_age_group")  
 
 - When calculating fatality rate by age group and gender we figure out that the segment of the population with the highest fatality rate are **men over 80 years old**:  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Segment_highes_%20fatality_rate.png "segment with the highest fatality rate")
@@ -277,19 +278,19 @@ We proceed to make the visuas: The color lines represents the fatality rate week
 - The final downward trend in the fatality rate is very pronounced in the "70 -79" and "80 or more" groups. 
 
 **Q4: Which age group already vaccinated has had a better response to the virus?**  
-As we already know, the vaccination plan gives priority to the elderly. Therefore, the oldest age groups are those that are more advanced in the vaccination schedule. One might think that these are the groups that should have the best response to the virus. However, we cannot know with certainty if the difference in each group in reduction of the fatality rate is due to the administration of vaccines or to the reduction of infections in each one.
+As we already know, the vaccination plan gives priority to the elderly. Therefore, the oldest age groups are those that are more advanced in the vaccination schedule. One might think that these are the groups that should have the best response to the virus. However, we cannot know with certainty if the difference in each group in reduction of the fatality rate is due to the administration of vaccines or to the reduction of infections in each one.  
 We have analyzed the behavior of the fatality rate individually in each age group. As we will see below, age group '60 - 69' is the one that has had the greatest reduction in the fatality rate since the beginning of vaccination.
 
 *Fatality Rate (Age Group: 60 - 69):*  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_AG60-69_and_week_linechart.PNG)
 
-*Relationship between Cases and Deaths by Age Group:*
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Scatterplot_Cases_vs_Deaths_relationship_by_AG.PNG)  
+<!--*Relationship between Cases and Deaths by Age Group:*
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Scatterplot_Cases_vs_Deaths_relationship_by_AG.PNG)-->
 
 
 
 ### Vaccinations vs Fatality Rate
-We evaluate the relationship that exists between the weekly fatality rate with the accumulated weekly vaccines and we see what relationship they have. The above in order to determine if an increase in the number of vaccinated is correlated with a change in the fatality rate.
+In this section we evaluate the relationship that exists between the weekly fatality rate with the accumulated weekly vaccines, in order to determine if an increase in the number of vaccinated is correlated with a change in the fatality rate.
 Grouping vaccinations **by week**:  
 ```python
 %%sql r8 <<
@@ -310,8 +311,8 @@ df_r8_9 = df_r9.merge(df_r8, how = 'left', on = 'año' and 'semana').drop('año_
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/FatalityRate_vs_Vaccinations_by_week.PNG "Vaccinations vs Fatallity Rate through time")
 
 **Q5: Is there any relationship between the number of people vaccinated and the evolution of the fatality rate?** 
-
-
+- As shown in the two previous visualizations, there is an interesting relationship between the fatality rate and vaccination: as the number of doses applied increases, the overall fatality rate decreases.
+- Of course, this is only a correlation that does not show causality in its entirety, however, it is true that there is a slight but evident decrease in the fatality rate and it is likely that its main cause is the advance in the vaccination.
 
 
 
@@ -356,10 +357,9 @@ for i in range(0,6):
 <!---Para ocultar-->
 
 
-| estado      | cantidad   | porcentaje  |
+<!---| estado      | cantidad   | porcentaje  |
 | ----------- |:----------:| -----------:|
 | N/A         | 12926      | 0.28        |
 | Fallecido   | 114337     | 2.50        |
 | Activo      | 120673     | 2.64        |
-| Recuperado  | 4317436    | 94.57       |
--->
+| Recuperado  | 4317436    | 94.57       |-->
