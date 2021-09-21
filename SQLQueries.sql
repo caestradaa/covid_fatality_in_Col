@@ -31,18 +31,6 @@ ALTER TABLE Casos
 ALTER COLUMN fecha_recuperacion DATE;
 
 
-------------------------------------------------------------------------------------
----- CHECKING NULLS:
-
-SELECT * FROM Casos WHERE fecha_diagnostico IS NULL
-SELECT COUNT(*) FROM Casos WHERE fecha_diagnostico IS NULL   --> Can't analyze cases by 'fecha_diagnostico' because it has too many nulls.
-
-SELECT * FROM Casos WHERE fecha_inicio_sintomas IS NULL
-SELECT COUNT(*) FROM Casos WHERE fecha_inicio_sintomas IS NULL  --> Can't analyze cases by 'fecha_inicio_sintomas' because it has too many nulls.
-
-SELECT * FROM Casos WHERE fecha_reporte_web IS NULL     --> 'fecha_reporte_web' was chosen for cases analysis.
-SELECT * FROM Casos WHERE id_caso IS NULL
-
 
 
 
@@ -51,27 +39,44 @@ SELECT * FROM Casos WHERE id_caso IS NULL
 --Correction of records that were wrongly imported with the date of '1899-12-30'.
 
 --Query to find out which "date" type columns have the error:
-SELECT fecha_recuperacion FROM Casos WHERE fecha_recuperacion = '1899-12-30'
-SELECT fecha_muerte FROM Casos WHERE fecha_muerte = '1899-12-30'
-SELECT fecha_inicio_sintomas FROM Casos WHERE fecha_inicio_sintomas = '1899-12-30'
-SELECT fecha_diagnostico FROM Casos WHERE fecha_diagnostico = '1899-12-30'
+SELECT COUNT(fecha_recuperacion) FROM Casos WHERE fecha_recuperacion = '1899-12-30'
+SELECT COUNT(fecha_muerte) FROM Casos WHERE fecha_muerte = '1899-12-30'
+SELECT COUNT(fecha_inicio_sintomas) FROM Casos WHERE fecha_inicio_sintomas = '1899-12-30'
+SELECT COUNT(fecha_diagnostico) FROM Casos WHERE fecha_diagnostico = '1899-12-30'
 
 --Correction:
 UPDATE Casos
 SET fecha_muerte = NULL
-WHERE fecha_muerte = '1899-12-30'
+WHERE fecha_muerte = '1899-12-30';
 
 UPDATE Casos
 SET fecha_recuperacion = NULL
-WHERE fecha_recuperacion = '1899-12-30'
+WHERE fecha_recuperacion = '1899-12-30';
 
 UPDATE Casos
 SET fecha_inicio_sintomas = NULL
-WHERE fecha_inicio_sintomas = '1899-12-30'
+WHERE fecha_inicio_sintomas = '1899-12-30';
 
 UPDATE Casos
 SET fecha_diagnostico = NULL
-WHERE fecha_diagnostico = '1899-12-30'
+WHERE fecha_diagnostico = '1899-12-30';
+
+
+
+
+
+------------------------------------------------------------------------------------
+---- CHECKING NULLS:
+
+SELECT * FROM Casos WHERE fecha_diagnostico IS NULL;
+SELECT COUNT(*) FROM Casos WHERE fecha_diagnostico IS NULL;   --> Can't analyze cases by 'fecha_diagnostico' because it has too many nulls.
+
+SELECT * FROM Casos WHERE fecha_inicio_sintomas IS NULL;
+SELECT COUNT(*) FROM Casos WHERE fecha_inicio_sintomas IS NULL;  --> Can't analyze cases by 'fecha_inicio_sintomas' because it has too many nulls.
+
+SELECT * FROM Casos WHERE fecha_reporte_web IS NULL;     --> 'fecha_reporte_web' was chosen for cases analysis.
+SELECT * FROM Casos WHERE id_caso IS NULL;
+
 
 
 
@@ -85,11 +90,11 @@ SELECT DISTINCT(nombre_dpto), codigo_divipola_dpto FROM Casos ORDER BY 1
 --Correction: (Just one error found: 'NARIÃ‘O')
 UPDATE Casos
 SET nombre_dpto = 'NARIÑO'
-WHERE nombre_dpto = 'NARIÃ‘O'
+WHERE nombre_dpto = 'NARIÃ‘O';
 
 
 ---Query of municipalities with errors: 
--- 15 out of 1118 municipalities were found with errors in the name. Its correction is not essential to continue with the analysis.
+-- 15 out of 1120 municipalities were found with errors in the name. Its correction is not essential to continue with the analysis.
 SELECT DISTINCT(nombre_municipio), codigo_divipola_municipio FROM Casos ORDER BY 1 
 
 
@@ -98,7 +103,7 @@ SELECT DISTINCT(nombre_municipio), codigo_divipola_municipio FROM Casos ORDER BY
 SELECT nombre_pais, codigo_iso_pais, count(nombre_pais) AS cuenta
 FROM Casos
 GROUP BY nombre_pais, codigo_iso_pais
-ORDER BY 1
+ORDER BY 1;
 
 --Country name correction:
 UPDATE Casos
@@ -216,7 +221,7 @@ EXEC SP_RENAME 'Casos.recuperado', 'estado', 'COLUMN'
 --RETRIEVING CLEANED DATA SET
 
 --Reatriving only the columns necessary for the analysis:
-SELECT TOP 5 fecha_reporte_web, id_caso, edad, unidad_medida_edad, sexo, estado, fecha_muerte
+SELECT TOP 10 fecha_reporte_web, id_caso, edad, unidad_medida_edad, sexo, estado, fecha_muerte
 FROM Casos
 ORDER BY fecha_reporte_web;
 
@@ -331,7 +336,7 @@ ORDER BY grupo_etario
 
 --3.Cases and deaths by age group and sex - Joining both aggrupations (View) (CTE y JOIN)
 --DROP VIEW IF EXISTS agrupacion_por_grupoetario_y_sexo
-CREATE VIEW agrupacion_por_grupoetario_y_sexo AS
+--CREATE VIEW agrupacion_por_grupoetario_y_sexo AS
 WITH CTE1_muertes (grupo_etario, sexo, fallecidos) AS (
         SELECT grupo_etario, sexo, COUNT(grupo_etario) AS fallecidos
         FROM Casos_con_grupo_etario
@@ -345,20 +350,20 @@ WITH CTE1_muertes (grupo_etario, sexo, fallecidos) AS (
         )
 SELECT m.grupo_etario, m.sexo, fallecidos, casos
 FROM CTE1_muertes m
-JOIN CTE2_casos c ON m.grupo_etario = c.grupo_etario AND m.sexo = c.sexo
+JOIN CTE2_casos c ON m.grupo_etario = c.grupo_etario AND m.sexo = c.sexo;
 
 --Cheking View:
 SELECT * FROM agrupacion_por_grupoetario_y_sexo ORDER BY grupo_etario
 
 
 
---4.Calculating lethality by age group and sex:
+--4.Calculating fatality rate by age group and sex:
 SELECT *, ROUND((CONVERT(FLOAT, fallecidos)/CONVERT(FLOAT, casos))*100,2) AS letalidad
 FROM agrupacion_por_grupoetario_y_sexo
 ORDER BY grupo_etario;
 
 
-      --4.1.What is the segment of the population (age group and sex) with the highest latency rate?:
+      --4.1.What is the segment of the population (age group and sex) with the highest fatality rate?:
       WITH CTE1_letalidad (grupo_etario, sexo, fallecidos, casos, letalidad) AS (
         SELECT *, ROUND((CONVERT(FLOAT, fallecidos)/CONVERT(FLOAT, casos))*100,2) AS letalidad
         FROM agrupacion_por_grupoetario_y_sexo
@@ -370,6 +375,7 @@ ORDER BY grupo_etario;
 
 
 --5.Calculating fatality rate just by age group (View):
+--DROP VIEW IF EXISTS letalidad_por_grupoetario
 --CREATE VIEW letalidad_por_grupoetario AS
 SELECT grupo_etario, SUM(fallecidos) AS fallecidos, SUM(casos) AS casos, ROUND((CONVERT(FLOAT, SUM(fallecidos))/CONVERT(FLOAT,SUM(casos)))*100,2) AS letalidad
 FROM agrupacion_por_grupoetario_y_sexo
@@ -401,7 +407,8 @@ ORDER BY YEAR(fecha_muerte), MONTH(fecha_muerte), grupo_etario
 
 
 --6.3.Grouping Cases and Deaths by age group and month (View):
-CREATE VIEW agrupacion_por_mes_y_grupoetario AS
+--DROP VIEW IF EXISTS agrupacion_por_mes_y_grupoetario
+--CREATE VIEW agrupacion_por_mes_y_grupoetario AS
 WITH CTE3_casos (año, mes, grupo_etario, casos) AS (
       SELECT YEAR(fecha_reporte_web) AS año, MONTH(fecha_reporte_web) AS mes, grupo_etario, COUNT(fecha_reporte_web) AS casos
       FROM Casos_con_grupo_etario
@@ -416,7 +423,7 @@ WITH CTE3_casos (año, mes, grupo_etario, casos) AS (
 SELECT c.año, c.mes, c.grupo_etario, fallecidos, casos
 FROM CTE3_casos c
 LEFT JOIN CTE4_muertes m ON c.año = m.año AND c.mes = m.mes AND c.grupo_etario = m.grupo_etario
---ORDER BY c.año, c.mes, c.grupo_etario;
+ORDER BY c.año, c.mes, c.grupo_etario;
 
 --Cheacking View:
 SELECT * FROM agrupacion_por_mes_y_grupoetario ORDER BY año, mes, grupo_etario
@@ -430,7 +437,8 @@ ORDER BY año, mes
 
 
 --7.Calculating fatality rate by month and age group (View)
-CREATE VIEW letalidad_por_grupoetario_por_mes AS
+--DROP VIEW IF EXISTS letalidad_por_grupoetario_por_mes
+--CREATE VIEW letalidad_por_grupoetario_por_mes AS
 SELECT año, mes, CONCAT(año,'-', mes) AS año_mes, grupo_etario, fallecidos, casos, ROUND((CONVERT(FLOAT, fallecidos)/CONVERT(FLOAT,casos))*100,2) AS letalidad
 FROM agrupacion_por_mes_y_grupoetario
 --ORDER BY año, mes, grupo_etario
@@ -442,7 +450,7 @@ SELECT * FROM letalidad_por_grupoetario_por_mes ORDER BY año, mes, grupo_etario
 	--7.1.Filtering by a single age group:
 	SELECT año_mes, casos, fallecidos, grupo_etario, letalidad
 	FROM letalidad_por_grupoetario_por_mes
-	WHERE grupo_etario = '70 - 79'
+	WHERE grupo_etario = '80 o más'
 	ORDER BY año, mes, grupo_etario
 
 
@@ -463,11 +471,11 @@ SELECT * FROM letalidad_por_grupoetario_por_mes ORDER BY año, mes, grupo_etario
 
 
 --9.Deaths by day
---SELECT fecha_muerte, COUNT(fecha_muerte) AS fallecimientos
---FROM Casos
---GROUP BY fecha_muerte, estado
---HAVING fecha_muerte > '2020-12-31' AND estado = 'Fallecido'
---ORDER BY fecha_muerte
+SELECT fecha_muerte, COUNT(fecha_muerte) AS fallecimientos
+FROM Casos
+GROUP BY fecha_muerte, estado
+HAVING fecha_muerte > '2020-12-31' AND estado = 'Fallecido'
+ORDER BY fecha_muerte
 
 
 
