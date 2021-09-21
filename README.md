@@ -292,7 +292,8 @@ We proceed to make the visuals: The color lines represents the fatality rate wee
 
 
 ### Vaccinations vs Fatality Rate
-In this section we evaluate the relationship that exists between the weekly fatality rate with the accumulated weekly vaccines, in order to determine if an increase in the number of vaccinated is correlated with a change in the fatality rate.
+In this section we evaluate the relationship that exists between the fatality rate by week with the accumulated weekly vaccines, in order to determine if an increase in the number of vaccinated people is correlated with a change in the fatality rate.
+
 Grouping vaccinations **by week**:  
 ```python
 %%sql r8 <<
@@ -303,8 +304,8 @@ GROUP BY YEAR(date), DATEPART(WEEK, date)
 ```
 Joining Vaccinations by week with Fatality rate by week:  
 ```python
-df_r9 = df_r6.loc[(df_r6.año == 2021) & (df_r6.semana >=8) ,:].reset_index(drop=True)
-df_r8_9 = df_r9.merge(df_r8, how = 'left', on = 'año' and 'semana').drop('año_y', axis = 1).rename({'año_x' : 'año'}, axis = 1)
+df_r9 = df_r6.loc[(df_r6.año==2021) & (df_r6.semana >=8) ,:].reset_index(drop=True)
+df_r8_9 = df_r9.merge(df_r8, how='left', on='año' and 'semana').drop('año_y', axis = 1).rename({'año_x' : 'año'}, axis=1)
 ```  
 *Vaccinations vs Fatallity Rate:*  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Scatterplot_Vaccinations_vs_FatallityRate.PNG "Vaccinations vs Fatallity Rate")
