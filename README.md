@@ -263,21 +263,30 @@ df_r6
 ```
 We proceed to make the visuas: The color lines represents the fatality rate week by week, and the pink bars in the background represents the number of deaths each week. We can clearly see the three peaks of deaths that have occurred in the country so we can compare what is its relation with fatality rate:
 
-*General Fatality Rate:*
+*General Fatality Rate:*  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_week_linechart_v1.PNG "Fatality rate and Deaths by week linechart") 
 
-*Fatality Rate by Age Group:*
+*Fatality Rate by Age Group:*  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_AG_and_week_linechart.PNG "Fatality rate and Deaths by age group and week linechart")
 
 **Q3: Is there a change in trend at any point after the start of vaccination? In general, by age group?**  
-- According to the graphs, a general downward trend in fatality is observed.
+- According to the graphs above, a general downward trend in fatality is observed.
 - However, during the first three months after the start of vaccination, there does not seem to be a significant change that indicates a decrease in fatality rate. During this time, there are notable peaks and valleys in its behavior given the sudden increase and decrease in the number of infections during those months.
 - A slight decrease in the fatality rate starts to be noticeable only four months after the start of vaccination (from week 2021-23). From there, a downward trend in fatality is observed reaching 2.03% in 09-2021 which is the lowest value in the entire pandemic.
 - Fatality rate tends to be higher in older age groups. This behavior is maintained throughout the pandemic, confirming that older people have been the hardest hit by the virus.
 - The final downward trend in the fatality rate is very pronounced in the "70 -79" and "80 or more" groups. 
 
-**Q4: Which age group already vaccinated has had a better response to vaccines?** 
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Scatterplot_Cases_vs_Deaths_relationship_by_AG.PNG)
+**Q4: Which age group already vaccinated has had a better response to the virus?**  
+As we already know, the vaccination plan gives priority to the elderly. Therefore, the oldest age groups are those that are more advanced in the vaccination schedule. One might think that these are the groups that should have the best response to the virus. However, we cannot know with certainty if the difference in each group in reduction of the fatality rate is due to the administration of vaccines or to the reduction of infections in each one.
+We have analyzed the behavior of the fatality rate individually in each age group. As we will see below, age group '60 - 69' is the one that has had the greatest reduction in the fatality rate since the beginning of vaccination.
+
+*Fatality Rate (Age Group: 60 - 69):*  
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_AG60-69_and_week_linechart.PNG)
+
+*Relationship between Cases and Deaths by Age Group:*
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Scatterplot_Cases_vs_Deaths_relationship_by_AG.PNG)  
+
+
 
 ### Vaccinations vs Fatality Rate
 We evaluate the relationship that exists between the weekly fatality rate with the accumulated weekly vaccines and we see what relationship they have. The above in order to determine if an increase in the number of vaccinated is correlated with a change in the fatality rate.
@@ -292,16 +301,19 @@ GROUP BY YEAR(date), DATEPART(WEEK, date)
 Joining Vaccinations by week with Fatality rate by week:  
 ```python
 df_r9 = df_r6.loc[(df_r6.año == 2021) & (df_r6.semana >=8) ,:].reset_index(drop=True)
-df_r8_9 = df_r9.merge(df_r8, how = 'left', on = 'año' and 'semana').drop('año_y', axis = 1).drop('año-semana', axis = 1)
-          .rename({'año_x' : 'año'}, axis = 1)
+df_r8_9 = df_r9.merge(df_r8, how = 'left', on = 'año' and 'semana').drop('año_y', axis = 1).rename({'año_x' : 'año'}, axis = 1)
 ```  
-*Vaccinations vs Fatallity Rate:*
+*Vaccinations vs Fatallity Rate:*  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Scatterplot_Vaccinations_vs_FatallityRate.PNG "Vaccinations vs Fatallity Rate")
 
-*Comparig Fatality Rate and Vaccinations through time (by week):*
+*Comparig Fatality Rate and Vaccinations through time (by week):*  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/FatalityRate_vs_Vaccinations_by_week.PNG "Vaccinations vs Fatallity Rate through time")
 
 **Q5: Is there any relationship between the number of people vaccinated and the evolution of the fatality rate?** 
+
+
+
+
 
 
 
