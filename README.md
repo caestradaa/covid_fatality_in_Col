@@ -231,6 +231,7 @@ Here we study how the fatality rate of each age group has evolved through time. 
 First we grouped cases and deaths by **month** and **age group** using CTEs statements and then joining the results in one table. Then, calculating fatality rate and ploting the results we get the next chart. The dotted line represents the start of vaccinations in the country. 
 
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_by_month_linechart.png "Fatality rate by month linechart")  
+
 **Q2: How has the Covid-19 fatality rate evolved from the start of the pandemic until today?**  
 - During the first five months of pandemic the general fatality rate remains is very high. It begins to stabilize at values between 2% and 3% from month 08-2020.
 - If we analyze from 08-2020 to 09-2021, it it hard to say that there is a significant difference before and after the start vaccination at leats at this level of granularity.
@@ -263,7 +264,7 @@ df_r6['letalidad'] = round((df_r6.fallecidos/df_r6.casos)*100,2)
 df_r6['año-semana'] = df_r6.año.astype(str)+'-'+df_r6.semana.astype(str)
 df_r6
 ```
-We proceed to make the visuas: The color lines represents the fatality rate week by week, and the pink bars in the background represents the number of deaths each week. We can clearly see the three peaks of deaths that have occurred in the country so we can compare what is its relation with fatality rate:
+We proceed to make the visuals: The color lines represents the fatality rate week by week, and the pink bars in the background represents the number of deaths each week. We can clearly see the three peaks of deaths that have occurred in the country so we can compare what is its relation with fatality rate:
 
 *General Fatality Rate:*  
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_week_linechart_v1.PNG "Fatality rate and Deaths by week linechart") 
@@ -279,7 +280,7 @@ We proceed to make the visuas: The color lines represents the fatality rate week
 - The final downward trend in the fatality rate is very pronounced in the "70 -79" and "80 or more" groups. 
 
 **Q4: Which age group already vaccinated has had a better response to the virus?**  
-- As we already know, the vaccination plan gives priority to the elderly. Therefore, the oldest age groups are those that are more advanced in the vaccination schedule. One might think that these are the groups that should have the best response to the virus. However, we cannot know with certainty if the difference in each group in reduction of the fatality rate is due to the administration of vaccines or to the reduction of infections in each one.  
+- As we already know, the vaccination plan gives priority to the elderly. Therefore, the oldest age groups are more advanced in the vaccination schedule. One might think that these groups should have the best response to the virus. However, we cannot know with certainty if the difference in  thereduction of the fatality rate for each group is due to the administration of vaccines or to the reduction of infections.  
 - We have analyzed the behavior of the fatality rate individually in each age group. As we will see below, age group '60 - 69' is the one that has had the greatest reduction in the fatality rate since the beginning of vaccination.
 
 *Fatality Rate (Age Group: 60 - 69):*  
