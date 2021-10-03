@@ -270,7 +270,7 @@ We proceed to make the visuals: The color lines represents the fatality rate wee
 ![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_week_linechart_v1.PNG "Fatality rate and Deaths by week linechart") 
 
 *Fatality Rate by Age Group:*  
-![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_AG_and_week_linechart.PNG "Fatality rate and Deaths by age group and week linechart")
+![alt text](https://github.com/caestradaa/covid_fatality_in_Col/blob/main/Images/Fatality_rate_and_Deaths_by_AG_and_week_linechart%20v2.PNG "Fatality rate and Deaths by age group and week linechart")
 
 **Q3: Is there a change in trend at any point after the start of vaccination? In general, by age group?**  
 - According to the graphs above, a general downward trend in fatality is observed.
