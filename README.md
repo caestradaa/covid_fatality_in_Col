@@ -335,29 +335,3 @@ df_r8_9 = df_r9.merge(df_r8, how='left', on='año' and 'semana').drop('año_y', 
 
 
 
-
-
-<!---
-- The downward trend in the fatality rate is very pronounced in the "70 -79" and "80 or more" groups. 
-- Fatality rate in the group of "80 or more" has decreased from an average of 26.21% in the last 10 months, to 21.69% in 07-2021. Fatality rate in the group of "70 - 79" has decreased from an average of 15.51% to 11.59% in 07-2021.
-- In other words, fatality rate has decreased by 17.24% for the group of "80 or more" and by 25.27% for the group of "70 - 79" after 6 months from the start of vaccination..
-
-![alt text]( "")
-![alt text]( "")
-
-
-`para inline code`
-
-```
-para bloque
-de codigo
-```
-
-<!---Para ocultar-->
-
-<!---| estado      | cantidad   | porcentaje  |
-| ----------- |:----------:| -----------:|
-| N/A         | 12926      | 0.28        |
-| Fallecido   | 114337     | 2.50        |
-| Activo      | 120673     | 2.64        |
-| Recuperado  | 4317436    | 94.57       |-->
