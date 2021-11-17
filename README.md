@@ -6,7 +6,7 @@
 ## Overview
 - A data analysis on Covid-19 in Colombia was made in order to understand the effects of mass vaccination on the fatality rate, and determine if there really is a positive impact on vaccinated population.
 - Two datasets were used: Covid-19 positive cases data in Colombia extracted from the oficial repository of the National Institute of Health (4.9M rows up to Sep 14, 2021), and Vaccination data extracted from the official Our World in Data repository (208 rows).
-- Project tools: SQL Server for loading and cleaning data (**[SQL file][sqlfile]**). And SQL and Python for exploratory and explanatory analysis on a **[Jupyter notebook][notebook]** via %sql magic.
+- Project tools: SQL Server for loading and cleaning data (**[SQL queries][sqlfile]**). And SQL and Python for exploratory and explanatory analysis on a **[Jupyter notebook][notebook]** via %sql magic.
 - It was found that during the first six months after the start of vaccination, there has been a slight decrease in the fatality rate. The change has been slow and only begins to be noticeable after the seventh month (09-2021). In the last two months fatality rate has decreased on average by 28%. <!---In people over 70 years old, fatality rate has decreased on average by 21.25%. In the age group from 70 to 79 fatality rate has decreased by 25.27%.-->
 
 
